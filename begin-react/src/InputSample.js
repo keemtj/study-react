@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function InputSample() {
+const InputSample = () => {
   const [inputs, setInputs] = useState({
     name: '',
     nickname: '',
@@ -10,8 +10,6 @@ function InputSample() {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    console.log('[e.target.name] => ', name);
-    console.log('[e.target.value] =>', value);
     setInputs({
       ...inputs,
       [name]: value,
@@ -20,10 +18,8 @@ function InputSample() {
 
   const onReset = () => {
     setInputs({
-      ...inputs,
-      [name]: '',
-      // name: '',
-      // nickname: '',
+      name: '',
+      nickname: '',
     });
   };
 
@@ -44,6 +40,6 @@ function InputSample() {
       </div>
     </div>
   );
-}
+};
 
 export default InputSample;
