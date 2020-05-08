@@ -7,7 +7,8 @@ const InputSample = () => {
   });
 
   const { name, nickname } = inputs;
-
+  console.log(name);
+  console.log(nickname);
   const onChange = (e) => {
     const { name, value } = e.target;
     setInputs({
