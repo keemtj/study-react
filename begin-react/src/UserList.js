@@ -2,25 +2,7 @@ import React from 'react';
 import User from './User';
 
 // User의 parent 컴포넌트
-function UserList() {
-  const users = [
-    {
-      id: 1,
-      username: 'jay jay jay',
-      email: 'keemgreat@gmail.com',
-    },
-    {
-      id: 2,
-      username: 'tester',
-      email: 'tester@example.com',
-    },
-    {
-      id: 3,
-      username: 'liz',
-      email: 'liz@example.com',
-    },
-  ];
-
+function UserList({ users }) {
   return (
     <div>
       {/* 고차함수 콜백함수의 첫번째 인수인 item이 props...? */}
