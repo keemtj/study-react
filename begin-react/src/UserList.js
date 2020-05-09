@@ -11,9 +11,9 @@ function UserList({ users }) {
         <User user={user} key={user.id} />
       ))}
       {/* id(=unique key)가 없으면 index를 넣어주어도 되는데, 웬만해서는 key대신 index 넣는것은 피해주는 것이 좋다 */}
-      {users.map((user, index) => (
+      {/* {users.map((user, index) => (
         <User user={user} key={index} />
-      ))}
+      ))} */}
     </div>
   );
 }
