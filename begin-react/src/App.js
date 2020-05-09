@@ -46,8 +46,9 @@ function App() {
       ...inputs,
     };
 
-    // setUsers([...users, user]);
-    setUsers(users.concat(user));
+    // 배열에 항목 추가하기
+    setUsers([...users, user]);
+    // setUsers(users.concat(user));
 
     setInputs({
       username: '',
