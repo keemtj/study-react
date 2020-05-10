@@ -6,12 +6,16 @@ import Button from '../Atoms/Button';
 // 1. Login-Form
 function LoginForm() {
   return (
-    <form>
+    <>
       <Span />
-      <Input />
-      <Button />
-      <Span />
-    </form>
+      <form>
+        <Span />
+        <Input />
+        <Span />
+        <Input />
+        <Button />
+      </form>
+    </>
   );
 }
 
