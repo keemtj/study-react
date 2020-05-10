@@ -28,6 +28,18 @@
       "react/jsx-one-expression-per-line": 0
     }
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -42,6 +54,8 @@
   },
   "devDependencies": {
     "eslint": "^7.0.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
     "prettier": "2.0.5"
   }
 }
