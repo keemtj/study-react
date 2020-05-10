@@ -8,8 +8,9 @@ import React from 'react';
 // 6. NewBoard-span
 // 7. Board-title-span
 // 8. Board-content-span
-function Span() {
-  return <span>로그인</span>;
+
+function Span({ value }) {
+  return <span>{value}</span>;
 }
 
 export default Span;

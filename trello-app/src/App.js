@@ -1,8 +1,8 @@
 import React from 'react';
-import LoginForm from './Components/Molecules/LoginForm';
+import TrelloPage from './Components/Pages/TrelloPage';
 
 function App() {
-  return <LoginForm />;
+  return <TrelloPage />;
 }
 
 export default App;
