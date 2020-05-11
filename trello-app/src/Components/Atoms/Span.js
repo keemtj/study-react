@@ -9,8 +9,8 @@ import React from 'react';
 // 7. Board-title-span
 // 8. Board-content-span
 
-function Span({ value }) {
-  return <span>{value}</span>;
+function Span() {
+  return <span>text</span>;
 }
 
 export default Span;

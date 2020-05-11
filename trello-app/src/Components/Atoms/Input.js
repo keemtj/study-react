@@ -5,14 +5,8 @@ import React from 'react';
 // 3. NewBoard-input
 // 4. Board-Content-input
 
-function Input({ name, placeholder, type }) {
-  return (
-    <input
-      type={type}
-      name={name}
-      placeholder={placeholder}
-    />
-  );
+function Input() {
+  return <input placeholder="text1, text2, text3" />;
 }
 
 export default Input;

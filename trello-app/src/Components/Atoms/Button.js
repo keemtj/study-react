@@ -4,12 +4,8 @@ import React from 'react';
 // 2. Header-Logout-button
 // 3. Board-Delete-button
 
-function Button({ type, value, onToggle }) {
-  return (
-    <button type={type} onClick={() => onToggle}>
-      {value}
-    </button>
-  );
+function Button() {
+  return <button>text</button>;
 }
 
 export default Button;

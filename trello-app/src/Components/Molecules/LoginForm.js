@@ -5,21 +5,11 @@ import Button from '../Atoms/Button';
 
 // 1. Login-Form
 function LoginForm() {
-  const btnType = {
-    text: 'text',
-    submit: 'submit',
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    console.log('login Success');
-  };
-
   // input, span, button
   return (
     <div>
       <Span value="로그인" />
-      <form onSubmit={onSubmit}>
+      <form>
         <Span value="아이디" />
         <Input
           type="text"
@@ -32,7 +22,7 @@ function LoginForm() {
           name="password"
           placeholder="PW를 입력하세요"
         />
-        <Button type={btnType.submit} value="로그인하기" />
+        <Button value="로그인하기" />
       </form>
     </div>
   );
