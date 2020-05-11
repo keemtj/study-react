@@ -30,7 +30,11 @@
       "react/prop-types": 0,
       "react/button-has-type": 0,
       "object-curly-newline": 0,
-      "no-console": 1
+      "no-console": 1,
+      "no-confusing-arrow": 0,
+      "implicit-arrow-linebreak": 0,
+      "function-paren-newline": 0,
+      "operator-linebreak": 0
     }
   },
   "husky": {
