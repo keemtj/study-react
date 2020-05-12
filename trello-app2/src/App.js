@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import LoginTemplate from './Components/LoginTemplate';
 import BoardTemplate from './Components/BoardTemplate';
 
-function App() {
+const App = () => {
   // state
-  const [templatesActive, setTemplatesActive] = useState(
-    false,
-  );
+  const [templatesActive, setTemplatesActive] = useState(false);
+
+  // login전에는 headerText: '로그인요망' // login후에는 headerText: 'userId'
+  // logout후에 유저id
+  // const [headerState, setHeaderState] = useState({
+  //   headerText: '로그인 요망',
+  //   logout: '',
+  // });
+
   const [users, setUsers] = useState([
     {
       _id: 1,
@@ -39,29 +45,31 @@ function App() {
   const toggleActive = (id) => {
     setUsers(
       users.map((user) =>
-        user.id === id
-          ? { ...user, active: !user.active }
-          : user,
+        user.id === id ? { ...user, active: !user.active } : user,
       ),
     );
     setTemplatesActive(!templatesActive);
   };
 
   const userCheck = () => {
-    users.map(
-      (user) =>
-        user.id === userId &&
-        user.password === userPw &&
-        toggleActive(user.id),
+    const [userOk] = users.filter(
+      (user) => user.id === userId && user.password === userPw,
     );
+    if (!userOk) return alert('너 계정 틀림');
+    toggleActive(userOk.id);
+  };
+
+  const toggleHeader = () => {
+    // templatesActive ?
   };
 
   return (
     <>
       {templatesActive ? (
-        <BoardTemplate users={users} />
+        <BoardTemplate toggleHeader={toggleHeader} users={users} />
       ) : (
         <LoginTemplate
+          toggleHeader={toggleHeader}
           inputs={inputs}
           onChange={onChange}
           userCheck={userCheck}
@@ -69,6 +77,6 @@ function App() {
       )}
     </>
   );
-}
+};
 
 export default App;
