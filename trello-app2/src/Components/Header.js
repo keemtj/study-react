@@ -15,7 +15,6 @@ const Header = ({ headerState, onClickLogout }) => {
   };
 
   const cursorStyle = {
-    border: '1px solid grey',
     cursor: 'pointer',
   };
 
