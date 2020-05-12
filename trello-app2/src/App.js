@@ -9,14 +9,14 @@ const App = () => {
   );
 
   const [headerState, setHeaderState] = useState({
-    headerText: '로그인 요망',
+    headerText: '로그인 필요',
     logout: '',
   });
 
   const [users, setUsers] = useState([
     {
       _id: 1,
-      id: 'test',
+      id: '김태진',
       password: '1234',
       active: false,
     },
