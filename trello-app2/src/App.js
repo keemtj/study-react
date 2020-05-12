@@ -68,6 +68,12 @@ const App = () => {
     setTemplatesActive(!templatesActive);
     toggleHeader(id);
     onResetInput();
+    console.log(
+      '%c%s',
+      'color: green;',
+      '[Login버튼 실행 직전 유저의 active정보] => ',
+      users,
+    );
   };
 
   const userCheck = () => {
@@ -80,6 +86,7 @@ const App = () => {
   };
 
   const onClickLogout = ({ target }) => {
+    setTemplatesActive(!templatesActive);
     setUsers(
       users.map((user) =>
         user.id ===
@@ -88,12 +95,17 @@ const App = () => {
           : user,
       ),
     );
-    setTemplatesActive(!templatesActive);
     setHeaderState({
       ...headerState,
       headerText: '로그인 요망',
       logout: '',
     });
+    console.log(
+      '%c%s',
+      'color: green;',
+      '[Logout버튼 실행 직전 당시에 유저의 active정보] => ',
+      users,
+    );
   };
 
   return (

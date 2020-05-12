@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Board = ({ users }) => {
-  console.log(users);
+const Board = () => {
   return <div>보드</div>;
 };
 
