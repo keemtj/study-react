@@ -3,6 +3,7 @@ import Header from './Header';
 import LoginForm from './LoginForm';
 
 const LoginTemplate = ({
+  onClickLogout,
   headerState,
   inputs,
   onChange,
@@ -10,7 +11,10 @@ const LoginTemplate = ({
 }) => {
   return (
     <>
-      <Header headerState={headerState} />
+      <Header
+        onClickLogout={onClickLogout}
+        headerState={headerState}
+      />
       <LoginForm
         inputs={inputs}
         onChange={onChange}

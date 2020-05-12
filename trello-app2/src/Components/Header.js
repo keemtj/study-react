@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Header = ({ headerText, logout }) => {
+const Header = ({ headerState, onClickLogout }) => {
   return (
     <header>
-      {headerText}
-      {logout}
+      <span>{headerState.headerText} </span>
+      <span onClick={onClickLogout}>
+        {headerState.logout}
+      </span>
     </header>
   );
 };

@@ -4,14 +4,14 @@ import BoardTemplate from './Components/BoardTemplate';
 
 const App = () => {
   // state
-  const [templatesActive, setTemplatesActive] = useState(false);
+  const [templatesActive, setTemplatesActive] = useState(
+    false,
+  );
 
-  // login전에는 headerText: '로그인요망' // login후에는 headerText: 'userId'
-  // logout후에 유저id
-  // const [headerState, setHeaderState] = useState({
-  //   headerText: '로그인 요망',
-  //   logout: '',
-  // });
+  const [headerState, setHeaderState] = useState({
+    headerText: '로그인 요망',
+    logout: '',
+  });
 
   const [users, setUsers] = useState([
     {
@@ -42,34 +42,71 @@ const App = () => {
     });
   };
 
+  const onResetInput = () => {
+    setInputs({
+      userId: '',
+      userPw: '',
+    });
+  };
+
+  const toggleHeader = (id) => {
+    setHeaderState({
+      ...headerState,
+      headerText: `${id}`,
+      logout: '로그아웃',
+    });
+  };
+
   const toggleActive = (id) => {
     setUsers(
       users.map((user) =>
-        user.id === id ? { ...user, active: !user.active } : user,
+        user.id === id
+          ? { ...user, active: !user.active }
+          : user,
       ),
     );
     setTemplatesActive(!templatesActive);
+    toggleHeader(id);
+    onResetInput();
   };
 
   const userCheck = () => {
     const [userOk] = users.filter(
-      (user) => user.id === userId && user.password === userPw,
+      (user) =>
+        user.id === userId && user.password === userPw,
     );
     if (!userOk) return alert('너 계정 틀림');
     toggleActive(userOk.id);
   };
 
-  const toggleHeader = () => {
-    // templatesActive ?
+  const onClickLogout = ({ target }) => {
+    setUsers(
+      users.map((user) =>
+        user.id ===
+        target.previousElementSibling.textContent
+          ? { ...user, active: !user.active }
+          : user,
+      ),
+    );
+    setTemplatesActive(!templatesActive);
+    setHeaderState({
+      ...headerState,
+      headerText: '로그인 요망',
+      logout: '',
+    });
   };
 
   return (
     <>
       {templatesActive ? (
-        <BoardTemplate toggleHeader={toggleHeader} users={users} />
+        <BoardTemplate
+          headerState={headerState}
+          users={users}
+          onClickLogout={onClickLogout}
+        />
       ) : (
         <LoginTemplate
-          toggleHeader={toggleHeader}
+          headerState={headerState}
           inputs={inputs}
           onChange={onChange}
           userCheck={userCheck}
