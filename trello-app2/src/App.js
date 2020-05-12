@@ -5,7 +5,7 @@ import BoardTemplate from './Components/BoardTemplate';
 const App = () => {
   // state
   const [templatesActive, setTemplatesActive] = useState(
-    false,
+    true,
   );
 
   const [headerState, setHeaderState] = useState({
@@ -16,13 +16,13 @@ const App = () => {
   const [users, setUsers] = useState([
     {
       _id: 1,
-      id: '김태진',
+      id: '스티브 잡스',
       password: '1234',
       active: false,
     },
     {
       _id: 2,
-      id: 'test2',
+      id: '마크 주커버그',
       password: '12345',
       active: false,
     },

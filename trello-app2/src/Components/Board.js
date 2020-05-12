@@ -1,7 +1,14 @@
 import React from 'react';
+import NewBoard from './NewBoard';
+import Card from './Card';
 
 const Board = () => {
-  return <div>보드</div>;
+  return (
+    <>
+      <NewBoard />
+      <Card />
+    </>
+  );
 };
 
 export default Board;

@@ -39,6 +39,7 @@ const LoginForm = ({ inputs, onChange, userCheck }) => {
     color: 'rgb(148, 158, 168)',
     fontSize: '1rem',
     outline: 'none',
+    autocomplete: 'off',
   };
 
   const loginButtonStyle = {
