@@ -5,7 +5,7 @@ import BoardTemplate from './Components/BoardTemplate';
 const App = () => {
   // state
   const [templatesActive, setTemplatesActive] = useState(
-    true,
+    false,
   );
 
   const [headerState, setHeaderState] = useState({
@@ -35,6 +35,7 @@ const App = () => {
 
   const { userId, userPw } = inputs;
 
+  // input이 여러개 일 때 target에 맞게 프로퍼티 동적 추가
   const onChange = (e) => {
     setInputs({
       ...inputs,
@@ -76,7 +77,9 @@ const App = () => {
     );
   };
 
-  const userCheck = () => {
+  const userCheck = (e) => {
+    // input에서 event 발생 시 reload를 방지함
+    e.preventDefault();
     const [userOk] = users.filter(
       (user) =>
         user.id === userId && user.password === userPw,

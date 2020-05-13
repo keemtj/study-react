@@ -18,6 +18,7 @@ const NewBoard = ({
         name="newBoardInput"
         onChange={onChange}
         onKeyPress={onKeyPress}
+        input={input}
         ref={inputRef}
       />
     </div>

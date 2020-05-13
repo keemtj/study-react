@@ -22,8 +22,8 @@ const Board = () => {
         ) + 1
       : 1;
 
-  const onKeyPress = ({ target, key }) => {
-    if (key === 'Enter' && target.value !== '') {
+  const onKeyPress = ({ target, charCode }) => {
+    if (charCode === 13 && target.value !== '') {
       setBoardNames([
         ...boardNames,
         {
@@ -32,6 +32,7 @@ const Board = () => {
         },
       ]);
       inputRef.current.value = '';
+      // setInput('');
     }
   };
 
