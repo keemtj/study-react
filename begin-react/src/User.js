@@ -23,4 +23,4 @@ function User({ user, onRemove, onToggle }) {
   );
 }
 
-export default User;
+export default React.memo(User);
