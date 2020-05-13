@@ -1,12 +1,25 @@
 import React from 'react';
-import NewCardInput from './NewCardInput';
 
-const NewBoard = () => {
+const NewBoard = ({
+  boardNames,
+  onChange,
+  onKeyPress,
+  inputRef,
+  input,
+}) => {
+  console.log('[boardNames]-> ', boardNames);
+  console.log('[input]-> ', input);
   return (
     <div>
       <span>New Board</span>
       &nbsp;&nbsp;
-      <NewCardInput />
+      <input
+        type="text"
+        name="newBoardInput"
+        onChange={onChange}
+        onKeyPress={onKeyPress}
+        ref={inputRef}
+      />
     </div>
   );
 };
