@@ -1,7 +1,7 @@
 import React from 'react';
 
 const LoginForm = ({ inputs, onChange, userCheck }) => {
-  console.log(inputs);
+  // console.log(inputs);
 
   const loginBoxStyle = {
     display: 'flex',

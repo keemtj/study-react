@@ -4,7 +4,6 @@ const NewBoard = ({
   boardNames,
   onChange,
   onKeyPress,
-  inputRef,
   input,
 }) => {
   console.log('[boardNames]-> ', boardNames);
@@ -18,8 +17,7 @@ const NewBoard = ({
         name="newBoardInput"
         onChange={onChange}
         onKeyPress={onKeyPress}
-        input={input}
-        ref={inputRef}
+        value={input}
       />
     </div>
   );

@@ -5,7 +5,7 @@ import BoardTemplate from './Components/BoardTemplate';
 const App = () => {
   // state
   const [templatesActive, setTemplatesActive] = useState(
-    false,
+    true,
   );
 
   const [headerState, setHeaderState] = useState({

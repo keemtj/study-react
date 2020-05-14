@@ -1,23 +1,22 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import NewBoard from './NewBoard';
 import Card from './Card';
 
 const Board = () => {
   const [input, setInput] = useState('');
-  const inputRef = useRef();
 
   const [boardNames, setBoardNames] = useState([
     {
-      cardId: 1,
-      cardName: '보드제목입니다',
+      boardId: 1,
+      boardname: '보드제목입니다',
     },
   ]);
 
-  const cardIdGen = () =>
+  const boardIdGen = () =>
     boardNames.length
       ? Math.max(
           ...boardNames.map(
-            (boardname) => boardname.cardId,
+            (boardname) => boardname.boardId,
           ),
         ) + 1
       : 1;
@@ -27,12 +26,11 @@ const Board = () => {
       setBoardNames([
         ...boardNames,
         {
-          cardId: cardIdGen(),
-          cardName: input,
+          boardId: boardIdGen(),
+          boardname: input,
         },
       ]);
-      inputRef.current.value = '';
-      // setInput('');
+      setInput('');
     }
   };
 
@@ -46,10 +44,16 @@ const Board = () => {
         onChange={onChange}
         onKeyPress={onKeyPress}
         boardNames={boardNames}
-        inputRef={inputRef}
         input={input}
       />
-      <Card />
+
+      {boardNames.map((boardName) => (
+        <Card
+          boardName={boardName}
+          input={input}
+          key={boardName.boardId}
+        />
+      ))}
     </div>
   );
 };
