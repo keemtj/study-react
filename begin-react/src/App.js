@@ -2,6 +2,7 @@
 import React, { useRef, useReducer, useMemo, useCallback } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
+import useInputs from './useInputs';
 
 // // useState
 
@@ -112,10 +113,11 @@ const countActiveUsers = (users) => {
 
 // 2. state 기본값
 const initialState = {
-  inputs: {
-    username: '',
-    email: '',
-  },
+  // useInputs.js를 만들어줌으로써 더이상 initialState에서 inputs상태를 관리 할 필요가 없어짐
+  // inputs: {
+  //   username: '',
+  //   email: '',
+  // },
   users: [
     {
       id: 1,
@@ -145,15 +147,16 @@ const reducer = (state, action) => {
   // action은 컴포넌트 내부의 dispatch의 action객체이다
   // return state;
   switch (action.type) {
-    case 'CHANGE_INPUT':
-      return {
-        // ... 불변성
-        ...state,
-        inputs: {
-          ...state.inputs,
-          [action.name]: action.value,
-        },
-      };
+    // useInputs.js를 만들어줌으로써 더이상 reducer에서 CHANGE_INPUT을 관리 할 필요가 없어짐
+    // case 'CHANGE_INPUT':
+    //   return {
+    //     // ... 불변성
+    //     ...state,
+    //     inputs: {
+    //       ...state.inputs,
+    //       [action.name]: action.value,
+    //     },
+    //   };
     // 12. CREATE_USER type에 대한 case 설정
     case 'CREATE_USER':
       return {
@@ -189,20 +192,29 @@ const App = () => {
   // 4. userReducer 선언
   const [state, dispatch] = useReducer(reducer, initialState);
   const { users } = state;
-  const { username, email } = state.inputs;
+  // useInputs의 return값
+  const [form, onChange, reset] = useInputs({
+    username: '',
+    email: '',
+  });
+  // useInputs의 form에서 추출
+  const { username, email } = form;
+  // useInputs.js를 만들어줌으로써 state.inputs에서 꺼내올 필요가 없어짐
+  // const { username, email } = state.inputs;
   // 9. useRef,
   // 기준값은 4, 기존에 3개가 등록되어 있어서(?)
   const nextId = useRef(4);
 
+  // useInputs.js를 만들어줌으로써 onChange가 필요없어짐
   // 6. onChange event
-  const onChange = useCallback((e) => {
-    const { name, value } = e.target;
-    dispatch({
-      type: 'CHANGE_INPUT',
-      name,
-      value,
-    });
-  }, []);
+  // const onChange = useCallback((e) => {
+  //   const { name, value } = e.target;
+  //   dispatch({
+  //     type: 'CHANGE_INPUT',
+  //     name,
+  //     value,
+  //   });
+  // }, []);
 
   // 8. onCreate evnet
   const onCreate = useCallback(() => {
@@ -217,8 +229,11 @@ const App = () => {
     });
     // 11. dispatch 밑에 nextid, currrent +== 1;
     nextId.current += 1;
+    // useInputs에서 가져온 reset 호출
+    reset();
     // 8-1.useCallback을 사용하고 있고 상태에서 기존 상테에 의존 하는 것이 있으므로 deps를 넣어준다
-  }, [username, email]);
+    // reset도 기존 상태에 의존하므로 deps에 넣어준다
+  }, [username, email, reset]);
 
   // 16. onToggle 함수
   const onToggle = useCallback((id) => {
