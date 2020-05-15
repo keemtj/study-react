@@ -2,7 +2,9 @@ import React from 'react';
 import User from './User';
 
 // User의 parent 컴포넌트
-function UserList({ users, onRemove, onToggle }) {
+function UserList({ users, onRemove, onToggle, count, count2 }) {
+  console.log(count);
+  console.log(count2);
   return (
     <div>
       {/* 고차함수 콜백함수의 첫번째 인수인 item이 props...? */}
@@ -19,6 +21,8 @@ function UserList({ users, onRemove, onToggle }) {
       {/* {users.map((user, index) => (
         <User user={user} key={index} />
       ))} */}
+      <span>활성 사용자 수: {count}</span>
+      <span>활성 사용자 수: {count2}</span>
     </div>
   );
 }

@@ -3,12 +3,13 @@ import React, { useRef, useReducer, useMemo, useCallback } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 
-function countActiveUsers(users) {
-  console.log('활성 사용자 수를 세는 중...');
-  return users.filter((user) => user.active).length;
-}
-
 // // useState
+
+// function countActiveUsers(users) {
+//   console.log('활성 사용자 수를 세는 중...');
+//   return users.filter((user) => user.active).length;
+// }
+
 // // useCallback으로 감싸준 함수에서 상위 컴포넌트의 props로써 받은 함수(onDoSomething)를 쓸 경우 deps에 넣어주어야 한다
 // function App() {
 //   // 상태(state) 설정
@@ -105,6 +106,10 @@ function countActiveUsers(users) {
 // }
 
 // useReducer
+const countActiveUsers = (users) => {
+  return users.filter((user) => user.active).length;
+};
+
 // 2. state 기본값
 const initialState = {
   inputs: {
@@ -134,7 +139,7 @@ const initialState = {
 };
 // 3. reducer 함수 만들기
 // 상태 업데이트 함수
-function reducer(state, action) {
+const reducer = (state, action) => {
   // 7. switch문 작성
   // initialState의 값이 state에 들어간다
   // action은 컴포넌트 내부의 dispatch의 action객체이다
@@ -177,10 +182,10 @@ function reducer(state, action) {
       // return state;
       throw new Error('Unhandled action');
   }
-}
+};
 
 // 1. App컴포넌트 기본 틀
-function App() {
+const App = () => {
   // 4. userReducer 선언
   const [state, dispatch] = useReducer(reducer, initialState);
   const { users } = state;
@@ -232,12 +237,13 @@ function App() {
   }, []);
 
   // 18. 활성 카운트
-  const count = useMemo(() => {
+  const count = useMemo(() => countActiveUsers(users), [users]);
+  const count2 = useMemo(() => {
     countActiveUsers(users);
   }, [users]);
 
-  // 5. rops 전달
   return (
+    // 5. props 전달
     <>
       <CreateUser
         username={username}
@@ -245,10 +251,15 @@ function App() {
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList users={users} onToggle={onToggle} onRemove={onRemove} />
-      <div>활성 사용자 수: {count}</div>
+      <UserList
+        users={users}
+        onRemove={onRemove}
+        onToggle={onToggle}
+        count={count}
+        count2={count2}
+      />
     </>
   );
-}
+};
 
 export default App;
