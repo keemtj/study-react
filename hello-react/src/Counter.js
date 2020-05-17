@@ -32,9 +32,42 @@ class Counter extends Component {
         <h2>Fix Number: {fixNumber}</h2>
         <button
           // onClick을 통해 버튼이 클릭되었을 때 호출할 함수를 지정한다
+          // onClick={() => {
+          //   // this.setState를 사용하여 state에 새로운 값을 넣을 수 있습니다.
+          //   this.setState({ number: number + 1 });
+          //   this.setState((prevState, props) => {
+          //     return {
+          //       // prevState: 기존 상태, props는 현재 지니고 있는 props
+          //       // props가 필요하지 않다면 생략 가능
+          //       // 업데이트 하고 싶은 내용
+          //     };
+          //   });
+          // }}
+
           onClick={() => {
-            // this.setState를 사용하여 state에 새로운 값을 넣을 수 있습니다.
-            this.setState({ number: number + 1 });
+            this.setState(
+              (prevState) => {
+                return {
+                  number: prevState.number + 1,
+                };
+              },
+              () => {
+                console.log('방금 setState가 호출되었습니다1');
+                console.log(this.state);
+              },
+            );
+            // 위 코드와 아래 코드는 똑같은 기능
+            // 아래 코드는 함수에서 바로 객체를 반환한다는 뜻
+            // 값을 바로 반환하고 싶다면 코드블록{} 생략 가능
+            this.setState(
+              (prevState) => ({
+                number: prevState.number + 1,
+              }),
+              () => {
+                console.log('방금 setState가 호출되었습니다2');
+                console.log(this.state);
+              },
+            );
           }}
         >
           +1
