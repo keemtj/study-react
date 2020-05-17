@@ -2,7 +2,7 @@ import React from 'react';
 // import MyComponent from './MyComponent';
 // import Counter from './Counter';
 // import Say from './Say';
-import EventPractive from './EventPractive';
+import EventPractice from './EventPractice';
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
     // </MyComponent>
     // <Counter />
     // <Say />
-    <EventPractive />
+    <EventPractice />
   );
 };
 
