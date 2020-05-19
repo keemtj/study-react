@@ -13,8 +13,6 @@ const IterationSample = () => {
   // 데이터 배열의 id 상태
   const [nextId, setNextId] = useState(5);
 
-  const nameList = names.map((name) => <li key={names.id}>{name.text}</li>);
-
   const onChange = (e) => setInputText(e.target.value);
 
   const onClick = () => {
@@ -26,7 +24,18 @@ const IterationSample = () => {
     setNames(nextNames);
     setInputText('');
   };
-  console.log(nameList);
+
+  const onRemove = (id) => {
+    const nextNames = names.filter((name) => name.id !== id);
+    setNames(nextNames);
+  };
+
+  const nameList = names.map((name) => (
+    <li onDoubleClick={() => onRemove(name.id)} key={name.id}>
+      {name.text}
+    </li>
+  ));
+
   return (
     <>
       <input type="text" value={inputText} onChange={onChange} />
