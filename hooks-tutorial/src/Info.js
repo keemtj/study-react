@@ -5,19 +5,28 @@ const Info = () => {
   const [nickname, setNickname] = useState('');
 
   useEffect(() => {
-    console.log('1. deps가 없으면 렌더링이 완료될때마다 콘솔을 띄워줍니다');
+    console.log('1. effect');
+    console.log(name);
+    return () => {
+      console.log('1. cleanup!');
+      console.log(
+        '1. 뒷정리 함수가 호출되면 업데이트 되기 직전 값만 보여줍니다',
+        name === '' ? '""' : `"${name}"`,
+      );
+    };
   });
 
   useEffect(() => {
-    console.log('2. 비어있는 deps[]를 넣어주면 처음에만 렌더링 됩니다');
+    console.log('2. 빈 deps 포함할 때 effect');
+    console.log(name);
+    return () => {
+      console.log('2. 빈 deps 포함할 때 cleanup!');
+      console.log(
+        `2. 빈 deps를 포함하면 렌더링이 처음 한번만 일어나므로 value가 업데이트 되어도 cleanup시 업데이트 되기 직전 값인 name: '${name} '만 보여줍니다`,
+        // name === '' ? '""' : `"${name}"`,
+      );
+    };
   }, []);
-
-  useEffect(() => {
-    console.log(
-      '3. 처음 렌더링이 완료되거나, deps에 넣어준 값이 업데이트 될때만 실행됩니다.',
-      name,
-    );
-  }, [name]);
 
   const onChangeName = (e) => {
     setName(e.target.value);
