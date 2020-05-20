@@ -1,5 +1,6 @@
 import React from 'react';
-import Info from './Info';
+import Average from './Average';
+// import Info from './Info';
 // import Counter from './Counter';
 
 // const App = () => {
@@ -18,7 +19,8 @@ const App = () => {
   return (
     <>
       {/* <Counter /> */}
-      <Info />
+      {/* <Info /> */}
+      <Average />
     </>
   );
 };
