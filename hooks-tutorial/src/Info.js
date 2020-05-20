@@ -29,18 +29,6 @@ const Info = () => {
   }, []);
 
   useEffect(() => {
-    console.log('2. 빈 deps 포함할 때 effect');
-    console.log(name);
-    return () => {
-      console.log('2. 빈 deps 포함할 때 cleanup!');
-      console.log(
-        `2. 빈 deps를 포함하면 렌더링이 처음 한번만 일어나므로 value가 업데이트 되어도 cleanup시 업데이트 되기 직전 값인 name: '${name} '만 보여줍니다`,
-        // name === '' ? '""' : `"${name}"`,
-      );
-    };
-  }, []);
-
-  useEffect(() => {
     console.log('3. deps에 상태값을 넣었을 때 effect');
     console.log(name);
     return () => {
