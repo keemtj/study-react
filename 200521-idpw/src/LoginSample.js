@@ -5,7 +5,6 @@ const LoginSample = () => {
     id: '',
     password: '',
   });
-
   const { id, password } = inputs;
   const inputEl = useRef(null);
 
