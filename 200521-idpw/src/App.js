@@ -1,9 +1,14 @@
 import React from 'react';
-import LoginSample from './LoginSample';
-import './App.css';
+import LoginSample from './Component/LoginSample';
+import Header from './Component/Header';
 
 const App = () => {
-  return <LoginSample />;
+  return (
+    <>
+      <Header />
+      <LoginSample />
+    </>
+  );
 };
 
 export default App;
