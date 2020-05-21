@@ -1,27 +1,14 @@
-import React, { useReducer } from 'react';
-
-const initialState = {
-  name: '',
-  nickname: '',
-};
-
-function reducer(state, action) {
-  console.log('[reducer]', state);
-  // action = target
-  return {
-    ...state,
-    [action.name]: action.value,
-  };
-}
+import React from 'react';
+import useInputs from './useInputs';
 
 const Info = () => {
-  // const [state, f dispatch] = useReducer(f reducer, default value of f reducer === initialState)
-  const [state, dispatch] = useReducer(reducer, initialState);
+  // useInputs의 return value
+  const [state, onChange] = useInputs({
+    name: '',
+    nickname: '',
+  });
+
   const { name, nickname } = state;
-  console.log('[Info]', state);
-  const onChange = ({ target }) => {
-    dispatch(target);
-  };
 
   return (
     <div>
