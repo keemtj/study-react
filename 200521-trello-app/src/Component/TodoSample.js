@@ -1,16 +1,11 @@
 import React, { useState, useRef } from 'react';
 import TodolistSample from './TodolistSample';
 
-const TodoSample = () => {
+const TodoSample = ({ board, removeBoard }) => {
   const [input, setInput] = useState('');
-  const [todos, setTodos] = useState([
-    { id: 1, content: '로그인폼 완성', active: false },
-    { id: 2, content: '투두리스트 완성', active: false },
-    { id: 3, content: '화면 전환', active: false },
-  ]);
-  const [nextId, setNextId] = useState(4);
+  const [todos, setTodos] = useState([]);
+  const [nextId, setNextId] = useState(0);
   const inputFocus = useRef(null);
-
   const onChange = (e) => setInput(e.target.value);
 
   const onClick = () => {
@@ -37,7 +32,7 @@ const TodoSample = () => {
 
   return (
     <div>
-      <h1>오늘의 할일</h1>
+      <div onClick={() => removeBoard(board._id)}>{board.title}</div>
       <ul>
         {todos.map((todo) => (
           <TodolistSample
