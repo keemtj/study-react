@@ -1,6 +1,11 @@
 import React, { useState, useRef } from 'react';
 
-const LoginSample = () => {
+const LoginSample = ({ loginState, setLoginState }) => {
+  // const [users, setUsers] = useState([
+  //   { userId: 'test1', userPassword: '1234', online: false },
+  //   { userId: 'test2', userPassword: '1234', online: false },
+  //   { userId: 'test3', userPassword: '1234', online: false },
+  // ]);
   const [inputs, setInputs] = useState({
     id: '',
     password: '',
@@ -21,6 +26,7 @@ const LoginSample = () => {
     e.preventDefault();
     onReset();
     inputEl.current.focus();
+    setLoginState(!loginState);
   };
 
   const onReset = () => {

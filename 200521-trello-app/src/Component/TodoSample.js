@@ -22,7 +22,7 @@ const TodoSample = () => {
   const onReset = () => setInput('');
 
   const addTodolist = () => {
-    setNextId(nextId + 1);
+    setNextId((nextId) => nextId + 1);
     const nextTodo = todos.concat({
       id: nextId,
       content: input,
@@ -32,15 +32,20 @@ const TodoSample = () => {
   };
 
   const removeTodolist = (id) => {
-    console.log(id);
-    const removeTodo = todos.filter((todo) => todo.id === id);
-    setTodos(removeTodo);
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
+
   return (
     <div>
       <h1>오늘의 할일</h1>
       <ul>
-        <TodolistSample todos={todos} removeTodolist={removeTodolist} />
+        {todos.map((todo) => (
+          <TodolistSample
+            key={todo.id}
+            todo={todo}
+            removeTodolist={removeTodolist}
+          />
+        ))}
       </ul>
       <input
         type="text"

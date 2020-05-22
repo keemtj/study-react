@@ -1,16 +1,12 @@
 import React from 'react';
 
-const TodolistSample = ({ todos, removeTodolist }) => {
-  console.log(todos);
+const TodolistSample = ({ todo, removeTodolist }) => {
+  const { id, content } = todo;
   return (
     <>
-      {todos.map((todo) => (
-        <li key={todo.id}>
-          {todo.content}
-          <button>토글</button>
-          <button onClick={removeTodolist}>삭제{todo.id}</button>
-        </li>
-      ))}
+      <li>{content}</li>
+      <button>토글</button>
+      <button onClick={() => removeTodolist(id)}>삭제</button>
     </>
   );
 };
