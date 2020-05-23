@@ -15,12 +15,14 @@ const NewsListBlock = styled.div`
     padding-right: 1rem;
   }
 `;
-const sampleArticle = {
-  title: 'title',
-  description: 'description',
-  url: 'https://google.com',
-  urlToImage: 'https://via.placeholder.com/160',
-};
+
+// // Article sample object
+// const sampleArticle = {
+//   title: 'title',
+//   description: 'description',
+//   url: 'https://google.com',
+//   urlToImage: 'https://via.placeholder.com/160',
+// };
 
 const NewsList = () => {
   const [articles, setArticles] = useState(null);
