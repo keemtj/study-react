@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import TodolistSample from './TodolistSample';
 
-const TodoSample = ({ board, removeBoard }) => {
+const TodoSample = ({ todos, setTodos, board, removeBoard }) => {
+  const { _id, title } = board;
   const [input, setInput] = useState('');
-  const [todos, setTodos] = useState([]);
   const [nextId, setNextId] = useState(0);
   const inputFocus = useRef(null);
   const onChange = (e) => setInput(e.target.value);
@@ -19,11 +19,13 @@ const TodoSample = ({ board, removeBoard }) => {
   const addTodolist = () => {
     setNextId((nextId) => nextId + 1);
     const nextTodo = todos.concat({
+      parentId: _id,
       id: nextId,
       content: input,
       active: false,
     });
     setTodos(nextTodo);
+    console.log(todos);
   };
 
   const removeTodolist = (id) => {
@@ -32,7 +34,7 @@ const TodoSample = ({ board, removeBoard }) => {
 
   return (
     <div>
-      <div onClick={() => removeBoard(board._id)}>{board.title}</div>
+      <div onClick={() => removeBoard(_id)}>{title}</div>
       <ul>
         {todos.map((todo) => (
           <TodolistSample

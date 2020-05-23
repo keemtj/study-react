@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import TodoSample from './TodoSample';
 
 const Board = () => {
-  const [boards, setBoards] = useState([]);
-  const [nextBoardId, setNextBoardId] = useState(2);
   const [boardInput, setBoardInput] = useState('');
+  const [boards, setBoards] = useState([]);
+  const [nextBoardId, setNextBoardId] = useState(0);
+  const [todos, setTodos] = useState([]);
 
   const onChange = (e) => {
     setBoardInput(e.target.value);
@@ -40,8 +41,15 @@ const Board = () => {
         onChange={onChange}
         onKeyPress={onKeyPress}
       />
+      {/* 보드를 map으로 뿌려줄 때, 보드 아이디를 가진 투두도 각 보드 컴포넌트에 넘기도록  */}
       {boards.map((board) => (
-        <TodoSample key={board._id} removeBoard={removeBoard} board={board} />
+        <TodoSample
+          key={board._id}
+          removeBoard={removeBoard}
+          board={board}
+          todos={todos}
+          setTodos={setTodos}
+        />
       ))}
     </div>
   );

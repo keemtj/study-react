@@ -2,7 +2,7 @@ import React from 'react';
 
 const TodolistSample = ({ todo, removeTodolist }) => {
   const { id, content } = todo;
-
+  // 상태관리 없음
   return (
     <>
       <li>
