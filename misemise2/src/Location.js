@@ -1,25 +1,23 @@
-import React from 'react';
+let lat = '';
+let long = '';
 
-const Location = () => {
-  const succesLocation = (position) => {
-    // const { latitude, longitude } = position.coords;
-    // getWeather(latitude, longitude);
-  };
-
-  const errorLocation = () => {
-    console.log('Sorry, no position available.');
-  };
-
-  const getLocation = () => {
-    navigator.geolocation.getCurrentPosition(succesLocation, errorLocation);
-  };
-
-  const weatherInit = () => {
-    getLocation();
-  };
-
-  weatherInit();
-  return <div></div>;
+const succesLocation = (position) => {
+  const { latitude, longitude } = position.coords;
+  lat = latitude;
+  long = longitude;
 };
 
-export default Location;
+const errorLocation = () => {
+  console.log('Sorry, no position available.');
+};
+
+const getLocation = () => {
+  navigator.geolocation.getCurrentPosition(succesLocation, errorLocation);
+};
+const locationInit = () => {
+  getLocation();
+};
+
+locationInit();
+
+export { lat, long };
