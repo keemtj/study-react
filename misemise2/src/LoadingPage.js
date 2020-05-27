@@ -12,7 +12,7 @@ const LoadingPage = () => {
         alignItems: 'center',
         margin: '0 auto',
         background: 'yellowgreen',
-        width: '70vh',
+        width: '70vw',
         height: '100vh',
       }}
     >
