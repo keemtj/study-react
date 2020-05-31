@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Link } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+import Profile from './Profile';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ul>
+        <li>
+          <Link to="/">홈</Link>
+        </li>
+        <li>
+          <Link to="/About">소개</Link>
+        </li>
+        <li>
+          <Link to="/Profile/velopert">velopert 프로필</Link>
+        </li>
+        <li>
+          <Link to="/Profile/keem">keem 프로필</Link>
+        </li>
+      </ul>
+      <hr />
+      <Route path="/" exact={true} component={Home} />
+      <Route path={['/About', '/info']} component={About} />
+      <Route path="/Profile/:username" component={Profile} />
     </div>
   );
-}
+};
 
 export default App;
