@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import WithRouterSample from './WithRouterSample';
 
 const data = {
   velopert: {
@@ -12,14 +14,8 @@ const data = {
 };
 
 const Profile = ({ match }) => {
-  console.log('[match]', match);
-  console.log('[match.params]', match.params);
-  console.log('[match.params.username]', match.params.username);
   const { username } = match.params;
   const profile = data[username];
-  console.log(profile);
-  console.log(profile.name);
-  console.log(profile.description);
 
   if (!profile) {
     return <div>존재하지 않는 사용자입니다.</div>;
@@ -31,8 +27,9 @@ const Profile = ({ match }) => {
         {username}({profile.name})
       </h3>
       <p>{profile.description}</p>
+      <WithRouterSample />
     </div>
   );
 };
 
-export default Profile;
+export default withRouter(Profile);

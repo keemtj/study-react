@@ -2,8 +2,11 @@ import React from 'react';
 import qs from 'qs';
 
 const About = ({ location }) => {
-  const query = qs.parse(location.serch, {
+  console.log(qs);
+  console.log(location);
+  const query = qs.parse(location.search, {
     // 이 설정을 통해 문자열 맨 앞의 ?를 생략합니다.
+    // ? 를 생략하지 않으면 showDetail text가 화면에 출력되지 않는다.
     ignoreQueryPrefix: true,
   });
 
