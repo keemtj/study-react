@@ -1,10 +1,11 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Counter from '../components/Counter';
 import { increase, decrease } from '../modules/counter';
 
 const CounterContainer = ({ number, increase, decrease }) => {
+  console.log('CounterContainer', number);
   return (
     <Counter number={number} onIncrease={increase} onDecrease={decrease} />
   );
@@ -30,18 +31,19 @@ const CounterContainer = ({ number, increase, decrease }) => {
 // // connect함수는 새로운 함수를 리턴하여 파라미터로 redux와 연동할 컴포넌트를 받는다.
 // export default connect(mapStateToProps, mapDispatchToProps)(CounterContainer);
 
-// mapDispatchToProps함수와 mapDispatchToprops함수를
+// mapStateToProps함수와 mapDispatchToProps함수를
 // connet함수 내부에 익명함수 형태로 선언 후 export
 export default connect(
   (state) => ({
     number: state.counter.number,
   }),
-  (dispatch) =>
-    bindActionCreators(
-      {
-        increase,
-        decrease,
-      },
-      dispatch,
-    ),
+  // (dispatch) =>
+  //   bindActionCreators(
+  //     {
+  //       increase,
+  //       decrease,
+  //     },
+  //     dispatch,
+  //   ),
+  { increase, decrease },
 )(CounterContainer);
