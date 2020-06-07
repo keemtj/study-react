@@ -16,7 +16,7 @@ const GET_USERS_FAILURE = 'sample/GET_USERS_FAILURE';
 // thunk 함수 내부에서는 시작할 때, 성공했을 때, 실패했을 때 다른 액션을 디스패치합니다.
 
 export const getPost = (id) => async (dispatch) => {
-  dispatch({ type: GET_POST });
+  dispatch({ type: GET_POST }); // 요청을 시작한 것을 알림
   try {
     const response = await api.getPost(id);
     dispatch({
@@ -34,7 +34,7 @@ export const getPost = (id) => async (dispatch) => {
 };
 
 export const getUsers = () => async (dispatch) => {
-  dispatch({ type: GET_USERS });
+  dispatch({ type: GET_USERS }); // 요청을 시작한 것을 알림
   try {
     const response = await api.getUsers();
     dispatch({
@@ -53,7 +53,6 @@ export const getUsers = () => async (dispatch) => {
 
 // 초기 상태를 선언합니다.
 // 요청의 로딩 중 상태는 loading이라는 객체에서 관리합니다.
-
 const initialState = {
   loading: {
     GET_POST: false,
@@ -63,6 +62,7 @@ const initialState = {
   users: null,
 };
 
+// reducer
 const sample = handleActions(
   {
     [GET_POST]: (state) => ({
@@ -106,7 +106,7 @@ const sample = handleActions(
       ...state,
       loading: {
         ...state.loading,
-        GET_USERS: false, // 요청완료
+        GET_USERS: false, // 요청 완료
       },
     }),
   },
