@@ -1,7 +1,17 @@
 import React from 'react';
+import Header from './components/Header';
+import Login from './components/Login';
+import Main from './components/Main';
 
 const App = () => {
-  return <div>Trello App을 만들자!</div>;
+  // 모든 상태관리는 app에서
+  const loginState = false;
+  return (
+    <>
+      <Header loginState={loginState} />
+      {loginState ? <Main /> : <Login />}
+    </>
+  );
 };
 
 export default App;

@@ -1,0 +1,46 @@
+.login-form {
+  margin: 15% auto;
+  border-radius: 2%;
+  background-color: rgb(80, 120, 255);
+  width: 20rem;
+  height: 25rem;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+  color: white;
+  div {
+    padding: 1.2rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.5rem;
+  }
+  input {
+    border-style: none;
+    margin-bottom: 1.3rem;
+    padding: 1.2rem;
+    width: 17.5rem;
+    border-radius: 5px;
+  }
+  button {
+    background-color: rgba(80, 120, 255, 0.1);
+    width: 20rem;
+    border-style: none;
+    border-radius: 5px;
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: white;
+    transition: ease;
+    transition-duration: 0.2s;
+    &:hover {
+      font-size: 1.8rem;
+      transition: ease;
+      transition-duration: 0.2s;
+    }
+  }
+}
