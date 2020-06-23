@@ -9,6 +9,10 @@ const TodoSample = ({ todos, setTodos, board, removeBoard }) => {
   const onChange = (e) => setInput(e.target.value);
 
   const onClick = () => {
+    console.log(_id);
+    console.log(input.id);
+    //
+    if (_id !== input.id) return;
     addTodolist();
     inputFocus.current.focus();
     onReset();
@@ -34,16 +38,20 @@ const TodoSample = ({ todos, setTodos, board, removeBoard }) => {
 
   return (
     <div>
-      <div onClick={() => removeBoard(_id)}>{title}</div>
-      <ul>
-        {todos.map((todo) => (
-          <TodolistSample
-            key={todo.id}
-            todo={todo}
-            removeTodolist={removeTodolist}
-          />
-        ))}
-      </ul>
+      <div>
+        {title}
+        <button onClick={() => removeBoard(_id)}>보드 삭제</button>
+        <ul>
+          {todos.map((todo) => (
+            <TodolistSample
+              key={todo.id}
+              todo={todo}
+              removeTodolist={removeTodolist}
+              board={board}
+            />
+          ))}
+        </ul>
+      </div>
       <input
         type="text"
         placeholder="할일을 입력하세요"
