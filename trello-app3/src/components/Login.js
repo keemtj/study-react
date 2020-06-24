@@ -1,7 +1,7 @@
 import React from 'react';
 import './Login.scss';
 
-const LoginTemplate = () => {
+const Login = () => {
   return (
     <form className="login-form">
       <div>LOGIN</div>
@@ -18,4 +18,4 @@ const LoginTemplate = () => {
   );
 };
 
-export default LoginTemplate;
+export default Login;

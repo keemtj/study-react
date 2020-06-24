@@ -6,6 +6,8 @@ header {
   width: 100%;
   background-color: rgb(80, 120, 255);
   color: white;
+  outline: none;
+  cursor: default;
   .icon {
     font-size: 2rem;
   }
@@ -17,6 +19,6 @@ header {
     position: absolute;
     font-size: 1.4rem;
     font-weight: 600;
-    left: 80rem;
+    right: 50px;
   }
 }

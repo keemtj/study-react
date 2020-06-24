@@ -1,5 +1,5 @@
 .login-form {
-  margin: 15% auto;
+  margin: 0 auto;
   border-radius: 2%;
   background-color: rgb(80, 120, 255);
   width: 20rem;
@@ -8,7 +8,11 @@
   display: flex;
   align-items: center;
   flex-flow: column nowrap;
+  position: relative;
+  top: 16rem;
   color: white;
+  outline: none;
+  cursor: default;
   div {
     padding: 1.2rem;
     font-size: 2rem;
