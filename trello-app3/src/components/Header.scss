@@ -1,8 +1,9 @@
 header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 1.4rem;
+  position: fixed;
+  padding: 1rem;
+  width: 100%;
   background-color: rgb(80, 120, 255);
   color: white;
   .icon {
@@ -11,10 +12,11 @@ header {
   .app-name {
     font-size: 2.2rem;
     padding-left: 1rem;
-    flex-grow: 1;
   }
   .login-state {
+    position: absolute;
     font-size: 1.4rem;
     font-weight: 600;
+    left: 80rem;
   }
 }

@@ -1,0 +1,41 @@
+.main-wrap {
+  padding: 2rem;
+  padding-top: 6rem;
+  .board-add {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    position: fixed;
+    div {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: rgb(80, 120, 255);
+      padding-right: 1rem;
+    }
+    input {
+      border-style: none;
+      border-bottom: 0.2rem solid rgba(80, 120, 255, 1);
+      outline: none;
+      width: 10rem;
+      padding: 0.2rem 1rem 0.2rem 1rem;
+    }
+    button {
+      margin-top: 0.3rem;
+      background-color: white;
+      border-style: none;
+      border-radius: 50%;
+      color: rgba(80, 120, 255, 1);
+      font-size: 1.5rem;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+
+  .board-wrap {
+    list-style: none;
+    padding: 0 2rem 2rem 2rem;
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+}
