@@ -1,19 +1,29 @@
 import React from 'react';
 import './Login.scss';
 
-const Login = () => {
+const Login = ({ inputs, onChange, onClick }) => {
   return (
     <form className="login-form">
       <div>LOGIN</div>
       <label htmlFor="id">ID</label>
-      <input id="id" type="text" placeholder="Plrease, Enter your ID." />
+      <input
+        id="id"
+        type="text"
+        placeholder="Plrease, Enter your ID."
+        name="id"
+        value={inputs.id}
+        onChange={onChange}
+      />
       <label htmlFor="password">PASSWORD</label>
       <input
         id="password"
         type="password"
         placeholder="Please, Enter your password"
+        name="password"
+        value={inputs.password}
+        onChange={onChange}
       />
-      <button>Trello Start</button>
+      <button onClick={onClick}>Trello Start</button>
     </form>
   );
 };

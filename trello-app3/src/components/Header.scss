@@ -15,10 +15,20 @@ header {
     font-size: 2.2rem;
     padding-left: 1rem;
   }
+  .user-id {
+    padding-left: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
   .login-state {
     position: absolute;
     font-size: 1.4rem;
     font-weight: 600;
     right: 50px;
+    border: none;
+    background-color: rgb(80, 120, 255);
+    color: white;
+    outline: none;
+    cursor: pointer;
   }
 }
