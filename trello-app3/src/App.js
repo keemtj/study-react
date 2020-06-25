@@ -4,7 +4,7 @@ import Login from './components/Login';
 import Main from './components/Main';
 
 const App = () => {
-  // State
+  // Users State
   const [users, setUsers] = useState([
     {
       id: 1,
@@ -19,12 +19,14 @@ const App = () => {
       active: false,
     },
   ]);
+  // Login State
   const [loginState, setLoginState] = useState(false);
   const [inputs, setInputs] = useState({
     id: '',
     password: '',
   });
 
+  // Login Event
   const onChange = (e) => {
     setInputs({
       ...inputs,
@@ -43,6 +45,7 @@ const App = () => {
     // 모달을 통해 정말로 로그아웃을 할 것인지 물어보는 문구 추가 기능 필요
     setLoginState(!loginState);
   };
+
   return (
     <>
       <Header loginState={loginState} onClickLogout={onClickLogout} />
