@@ -3,7 +3,13 @@ import './Main.scss';
 import { MdAdd } from 'react-icons/md';
 import Board from './Board';
 
-const Main = ({ newBoard, onChangeNewBoard, onClickNewBoard }) => {
+const Main = ({
+  newBoardInput,
+  onChangeNewBoard,
+  onClickNewBoard,
+  boards,
+  onRemoveBoard,
+}) => {
   return (
     <div className="main-wrap">
       <div className="board-add">
@@ -12,7 +18,7 @@ const Main = ({ newBoard, onChangeNewBoard, onClickNewBoard }) => {
           type="text"
           placeholder="Add New Board :)"
           name="newboard"
-          value={newBoard}
+          value={newBoardInput}
           onChange={onChangeNewBoard}
         />
         <button type="button" onClick={onClickNewBoard}>
@@ -20,11 +26,9 @@ const Main = ({ newBoard, onChangeNewBoard, onClickNewBoard }) => {
         </button>
       </div>
       <ul className="board-wrap">
-        <Board />
-        <Board />
-        <Board />
-        <Board />
-        <Board />
+        {boards.map((board) => (
+          <Board key={board.id} board={board} onRemoveBoard={onRemoveBoard} />
+        ))}
       </ul>
     </div>
   );

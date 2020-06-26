@@ -28,15 +28,24 @@ const App = () => {
   });
 
   // New Board State
-  const [newBoard, setNewBoard] = useState('');
+  const [newBoardInput, setNewBoardInput] = useState('');
+
+  // Board State
+  const [boards, setBoards] = useState([
+    {
+      id: 1,
+      text: 'board 1',
+    },
+  ]);
 
   // Login Event
-  const onChange = (e) => {
+  const onChange = ({ target }) => {
     setInputs({
       ...inputs,
-      [e.target.name]: e.target.value,
+      [target.name]: target.value,
     });
   };
+
   const onClick = () => {
     setLoginState(!loginState);
     setInputs({
@@ -44,6 +53,7 @@ const App = () => {
       password: '',
     });
   };
+
   const onClickLogout = () => {
     if (loginState === false) return;
     // 모달을 통해 정말로 로그아웃을 할 것인지 물어보는 문구 추가 기능 필요
@@ -51,12 +61,20 @@ const App = () => {
   };
 
   // New Board Event
-  const onChangeNewBoard = (e) => {
-    setNewBoard(e.target.value);
+  const onChangeNewBoard = ({ target }) => {
+    setNewBoardInput(target.value);
   };
 
   const onClickNewBoard = () => {
-    setNewBoard('');
+    // new board input state를 초기화 하기 전에 add board list 코드 필요 o
+    // id가 2로 고정된 상태 -> generate id 함수 필요 x
+    setBoards(boards.concat({ id: 2, text: newBoardInput }));
+    setNewBoardInput('');
+  };
+
+  // onRemoveBoard
+  const onRemoveBoard = (id) => {
+    setBoards(boards.filter((board) => board.id !== id));
   };
 
   return (
@@ -66,9 +84,11 @@ const App = () => {
         <Login inputs={inputs} onChange={onChange} onClick={onClick} />
       ) : (
         <Main
-          newBoard={newBoard}
+          newBoardInput={newBoardInput}
           onChangeNewBoard={onChangeNewBoard}
           onClickNewBoard={onClickNewBoard}
+          boards={boards}
+          onRemoveBoard={onRemoveBoard}
         />
       )}
     </>

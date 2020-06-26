@@ -3,12 +3,12 @@ import './Board.scss';
 import { MdClear, MdAdd } from 'react-icons/md';
 import Todo from './Todo';
 
-const Board = () => {
+const Board = ({ board, onRemoveBoard }) => {
   return (
     <li className="board">
       <div>
-        board name(temp)
-        <button>
+        {board.text}
+        <button onClick={() => onRemoveBoard(board.id)}>
           <MdClear />
         </button>
       </div>
