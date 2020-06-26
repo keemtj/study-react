@@ -7,7 +7,7 @@ const Board = () => {
   return (
     <li className="board">
       <div>
-        board name
+        board name(temp)
         <button>
           <MdClear />
         </button>

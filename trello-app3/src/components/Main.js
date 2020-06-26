@@ -3,13 +3,19 @@ import './Main.scss';
 import { MdAdd } from 'react-icons/md';
 import Board from './Board';
 
-const Main = () => {
+const Main = ({ newBoard, onChangeNewBoard, onClickNewBoard }) => {
   return (
     <div className="main-wrap">
       <div className="board-add">
         <div>New Board</div>
-        <input type="text" placeholder="Add New Board :)" />
-        <button type="button">
+        <input
+          type="text"
+          placeholder="Add New Board :)"
+          name="newboard"
+          value={newBoard}
+          onChange={onChangeNewBoard}
+        />
+        <button type="button" onClick={onClickNewBoard}>
           <MdAdd />
         </button>
       </div>

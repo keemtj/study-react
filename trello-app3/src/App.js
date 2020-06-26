@@ -19,12 +19,16 @@ const App = () => {
       active: false,
     },
   ]);
+
   // Login State
   const [loginState, setLoginState] = useState(false);
   const [inputs, setInputs] = useState({
     id: '',
     password: '',
   });
+
+  // New Board State
+  const [newBoard, setNewBoard] = useState('');
 
   // Login Event
   const onChange = (e) => {
@@ -46,13 +50,26 @@ const App = () => {
     setLoginState(!loginState);
   };
 
+  // New Board Event
+  const onChangeNewBoard = (e) => {
+    setNewBoard(e.target.value);
+  };
+
+  const onClickNewBoard = () => {
+    setNewBoard('');
+  };
+
   return (
     <>
       <Header loginState={loginState} onClickLogout={onClickLogout} />
       {!loginState ? (
         <Login inputs={inputs} onChange={onChange} onClick={onClick} />
       ) : (
-        <Main />
+        <Main
+          newBoard={newBoard}
+          onChangeNewBoard={onChangeNewBoard}
+          onClickNewBoard={onClickNewBoard}
+        />
       )}
     </>
   );
