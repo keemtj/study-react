@@ -12,6 +12,16 @@ const Board = ({ board, onRemoveBoard }) => {
           <MdClear />
         </button>
       </div>
+
+      {/**
+
+      1. TodoList component를 만들고 그 안에서 Todo 컴포넌트를 만들도록 수정
+      2. Board.scss 수정
+      3. TodoList.scss 생성 및 Todo.scss 수정
+      depth: Board.js -> TodoList.js -> Todo.js
+      
+      */}
+
       <input type="text" placeholder="Add New Todo!" />
       <button>
         <MdAdd />
