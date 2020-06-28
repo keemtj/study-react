@@ -3,7 +3,6 @@ import { MdClear } from 'react-icons/md';
 import './Todo.scss';
 
 const Todo = ({ todo, onClickRemoveTodo }) => {
-  console.log(todo);
   return (
     <li className="list-item">
       <span>{todo.content}</span>

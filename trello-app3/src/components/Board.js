@@ -13,6 +13,7 @@ const Board = ({
   onClickAddTodo,
   onClickRemoveTodo,
 }) => {
+  console.log(board.id);
   return (
     <li className="board">
       <div>
@@ -22,13 +23,24 @@ const Board = ({
         </button>
       </div>
       <ul>
-        {todos.map((todo) => (
+        {/* 보드를 map으로 뿌려줄 때, 보드 아이디를 가진 투두도 각 보드 컴포넌트에 넘기도록  */}
+        {/* {todos.map((todo) => (
           <Todo
             key={todo.id}
             todo={todo}
             onClickRemoveTodo={onClickRemoveTodo}
           />
-        ))}
+        ))} */}
+        {todos.map(
+          (todo) =>
+            todo.boardId === board.id && (
+              <Todo
+                key={todo.id}
+                todo={todo}
+                onClickRemoveTodo={onClickRemoveTodo}
+              />
+            ),
+        )}
       </ul>
       <input
         type="text"
@@ -36,7 +48,7 @@ const Board = ({
         value={todoInput}
         onChange={onChangeTodoInput}
       />
-      <button type="button" onClick={onClickAddTodo}>
+      <button type="button" onClick={() => onClickAddTodo(board.id)}>
         <MdAdd />
       </button>
     </li>

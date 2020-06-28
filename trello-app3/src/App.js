@@ -34,10 +34,14 @@ const App = () => {
 
   // Board State
   const [boards, setBoards] = useState([
-    {
-      id: 1,
-      text: 'board 1',
-    },
+    // {
+    //   id: 1,
+    //   text: 'board 1',
+    // },
+    // {
+    //   id: 2,
+    //   text: 'board 2',
+    // },
   ]);
 
   // Add todo input State
@@ -45,15 +49,22 @@ const App = () => {
 
   // Todos State
   const [todos, setTodos] = useState([
-    {
-      id: 1,
-      content: 'todo1',
-    },
-    {
-      id: 2,
-      content: 'todo2',
-    },
+    // {
+    //   id: 1,
+    //   boardId: 1,
+    //   content: 'todo1',
+    // },
+    // {
+    //   id: 2,
+    //   boardId: 1,
+    //   content: 'todo2',
+    // },
   ]);
+
+  // board id State
+  const [boardNextId, setBoardNextId] = useState(0);
+  // todo id State
+  const [todoNextId, setTodoNextId] = useState(0);
 
   // Login Event
   const onChange = ({ target }) => {
@@ -84,9 +95,8 @@ const App = () => {
   };
 
   const onClickNewBoard = () => {
-    // new board input state를 초기화 하기 전에 add board list 코드 필요 o
-    // id가 2로 고정된 상태 -> generate id 함수 필요 x
-    setBoards(boards.concat({ id: 2, text: newBoardInput }));
+    setBoardNextId((boardNextId) => boardNextId + 1);
+    setBoards(boards.concat({ id: boardNextId, text: newBoardInput }));
     setNewBoardInput('');
   };
 
@@ -102,8 +112,16 @@ const App = () => {
   };
 
   // Add Todo Event
-  const onClickAddTodo = () => {
-    setTodos(todos.concat({ id: 3, content: todoInput }));
+  const onClickAddTodo = (id) => {
+    // id === board.id
+    setTodoNextId((todoNextId) => todoNextId + 1);
+    setTodos(
+      todos.concat({
+        id: todoNextId,
+        boardId: id,
+        content: todoInput,
+      }),
+    );
     setTodoInput('');
   };
 

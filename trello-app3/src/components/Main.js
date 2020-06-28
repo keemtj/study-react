@@ -31,7 +31,6 @@ const Main = ({
         </button>
       </div>
       <ul className="board-wrap">
-        {/* 보드를 map으로 뿌려줄 때, 보드 아이디를 가진 투두도 각 보드 컴포넌트에 넘기도록  */}
         {boards.map((board) => (
           <Board
             key={board.id}
