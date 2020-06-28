@@ -78,7 +78,7 @@ const App = () => {
     setLoginState(!loginState);
   };
 
-  // New Board Event
+  // Add board Event
   const onChangeNewBoard = ({ target }) => {
     setNewBoardInput(target.value);
   };
@@ -90,22 +90,23 @@ const App = () => {
     setNewBoardInput('');
   };
 
-  // Board Remove Event
+  // Remove board Event
   const onRemoveBoard = (id) => {
     setBoards(boards.filter((board) => board.id !== id));
   };
 
-  // Board input TodoList Event
+  // Todo input Event
   const onChangeTodoInput = ({ target }) => {
     setTodoInput(target.value);
   };
 
-  // Board add Todolist Event
+  // Add Todo Event
   const onClickAddTodo = () => {
     setTodos(todos.concat({ id: 3, content: todoInput }));
     setTodoInput('');
   };
 
+  // Remove todo Event
   const onClickRemoveTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
