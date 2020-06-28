@@ -92,6 +92,7 @@ const App = () => {
 
   // Remove board Event
   const onRemoveBoard = (id) => {
+    // id === board.id
     setBoards(boards.filter((board) => board.id !== id));
   };
 
@@ -108,6 +109,7 @@ const App = () => {
 
   // Remove todo Event
   const onClickRemoveTodo = (id) => {
+    // id === board.id
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
