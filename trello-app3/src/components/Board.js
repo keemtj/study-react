@@ -1,19 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Board.scss';
+import Todo from './Todo';
 import { MdClear, MdAdd } from 'react-icons/md';
 
-import Todo from './Todo';
+const Board = ({ board, onRemoveBoard }) => {
+  // todos State
+  const [todos, setTodos] = useState([
+    // {
+    //   id: todoNextId,
+    //   boardId: id,
+    //   content: todoInput,
+    // },
+  ]);
 
-const Board = ({
-  board,
-  onRemoveBoard,
-  todos,
-  todoInput,
-  onChangeTodoInput,
-  onClickAddTodo,
-  onClickRemoveTodo,
-}) => {
-  console.log(board.id);
+  // todo input State
+  const [todoInput, setTodoInput] = useState('');
+
+  // todo next id State
+  const [todoNextId, setTodoNextId] = useState(0);
+
+  // Todo input Event
+  const onChangeTodoInput = ({ target }) => {
+    setTodoInput(target.value);
+  };
+
+  // Add Todo Event
+  const onClickAddTodo = (id) => {
+    // id === board.id
+    setTodoNextId((todoNextId) => todoNextId + 1);
+    setTodos(
+      todos.concat({
+        id: todoNextId,
+        boardId: id,
+        content: todoInput,
+      }),
+    );
+    setTodoInput('');
+  };
+
+  // Remove todo Event
+  const onClickRemoveTodo = (id) => {
+    // id === board.id
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <li className="board">
       <div>
@@ -23,14 +53,7 @@ const Board = ({
         </button>
       </div>
       <ul>
-        {/* 보드를 map으로 뿌려줄 때, 보드 아이디를 가진 투두도 각 보드 컴포넌트에 넘기도록  */}
-        {/* {todos.map((todo) => (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            onClickRemoveTodo={onClickRemoveTodo}
-          />
-        ))} */}
+        {/* board id와 일치하는 todo를 렌더링, todo의 기본 상태값에 board id도 포함 */}
         {todos.map(
           (todo) =>
             todo.boardId === board.id && (

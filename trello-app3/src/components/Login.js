@@ -3,7 +3,7 @@ import './Login.scss';
 
 const Login = ({ inputs, onChange, onClick }) => {
   return (
-    <form className="login-form">
+    <form className="login-form" onSubmit={onClick}>
       <div>LOGIN</div>
       <label htmlFor="id">ID</label>
       <input
@@ -23,7 +23,7 @@ const Login = ({ inputs, onChange, onClick }) => {
         value={inputs.password}
         onChange={onChange}
       />
-      <button onClick={onClick}>Trello Start</button>
+      <button type="submit">Trello Start</button>
     </form>
   );
 };
