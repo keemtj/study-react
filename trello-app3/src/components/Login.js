@@ -3,7 +3,7 @@ import './Login.scss';
 
 const Login = ({ inputs, onChange, onClick }) => {
   return (
-    <form className="login-form" onSubmit={onClick}>
+    <form className="login-form" autocomplete="off" onSubmit={onClick}>
       <div>LOGIN</div>
       <label htmlFor="id">ID</label>
       <input
