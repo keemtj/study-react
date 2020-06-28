@@ -38,9 +38,20 @@ const App = () => {
       id: 1,
       text: 'board 1',
     },
+  ]);
+
+  // Add todo input State
+  const [todoInput, setTodoInput] = useState('');
+
+  // Todos State
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      content: 'todo1',
+    },
     {
       id: 2,
-      text: 'board 2',
+      content: 'todo2',
     },
   ]);
 
@@ -75,13 +86,28 @@ const App = () => {
   const onClickNewBoard = () => {
     // new board input state를 초기화 하기 전에 add board list 코드 필요 o
     // id가 2로 고정된 상태 -> generate id 함수 필요 x
-    setBoards(boards.concat({ id: 3, text: newBoardInput }));
+    setBoards(boards.concat({ id: 2, text: newBoardInput }));
     setNewBoardInput('');
   };
 
   // Board Remove Event
   const onRemoveBoard = (id) => {
     setBoards(boards.filter((board) => board.id !== id));
+  };
+
+  // Board input TodoList Event
+  const onChangeTodoInput = ({ target }) => {
+    setTodoInput(target.value);
+  };
+
+  // Board add Todolist Event
+  const onClickAddTodo = () => {
+    setTodos(todos.concat({ id: 3, content: todoInput }));
+    setTodoInput('');
+  };
+
+  const onClickRemoveTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
@@ -96,6 +122,11 @@ const App = () => {
           onClickNewBoard={onClickNewBoard}
           boards={boards}
           onRemoveBoard={onRemoveBoard}
+          todos={todos}
+          todoInput={todoInput}
+          onChangeTodoInput={onChangeTodoInput}
+          onClickAddTodo={onClickAddTodo}
+          onClickRemoveTodo={onClickRemoveTodo}
         />
       )}
     </>

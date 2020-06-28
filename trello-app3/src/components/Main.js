@@ -9,6 +9,11 @@ const Main = ({
   onClickNewBoard,
   boards,
   onRemoveBoard,
+  todos,
+  todoInput,
+  onChangeTodoInput,
+  onClickAddTodo,
+  onClickRemoveTodo,
 }) => {
   return (
     <div className="main-wrap">
@@ -27,7 +32,16 @@ const Main = ({
       </div>
       <ul className="board-wrap">
         {boards.map((board) => (
-          <Board key={board.id} board={board} onRemoveBoard={onRemoveBoard} />
+          <Board
+            key={board.id}
+            board={board}
+            onRemoveBoard={onRemoveBoard}
+            todos={todos}
+            todoInput={todoInput}
+            onChangeTodoInput={onChangeTodoInput}
+            onClickAddTodo={onClickAddTodo}
+            onClickRemoveTodo={onClickRemoveTodo}
+          />
         ))}
       </ul>
     </div>

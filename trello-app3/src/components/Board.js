@@ -1,9 +1,18 @@
 import React from 'react';
 import './Board.scss';
 import { MdClear, MdAdd } from 'react-icons/md';
+
 import Todo from './Todo';
 
-const Board = ({ board, onRemoveBoard }) => {
+const Board = ({
+  board,
+  onRemoveBoard,
+  todos,
+  todoInput,
+  onChangeTodoInput,
+  onClickAddTodo,
+  onClickRemoveTodo,
+}) => {
   return (
     <li className="board">
       <div>
@@ -12,27 +21,24 @@ const Board = ({ board, onRemoveBoard }) => {
           <MdClear />
         </button>
       </div>
-
-      {/**
-
-      1. TodoList component를 만들고 그 안에서 Todo 컴포넌트를 만들도록 수정
-      2. Board.scss 수정
-      3. TodoList.scss 생성 및 Todo.scss 수정
-      depth: Board.js -> TodoList.js -> Todo.js
-      
-      */}
-
-      <input type="text" placeholder="Add New Todo!" />
-      <button>
+      <ul>
+        {todos.map((todo) => (
+          <Todo
+            key={todo.id}
+            todo={todo}
+            onClickRemoveTodo={onClickRemoveTodo}
+          />
+        ))}
+      </ul>
+      <input
+        type="text"
+        placeholder="Add New Todo!"
+        value={todoInput}
+        onChange={onChangeTodoInput}
+      />
+      <button type="button" onClick={onClickAddTodo}>
         <MdAdd />
       </button>
-      <ul className="todolist">
-        <Todo />
-        <Todo />
-        <Todo />
-        <Todo />
-        <Todo />
-      </ul>
     </li>
   );
 };
