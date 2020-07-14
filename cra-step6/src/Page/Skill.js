@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SubRouter from '../Router/SubRouter';
 
 const Skill = () => {
@@ -14,16 +14,24 @@ const Skill = () => {
   for (var i = 0; i < contents.length; i++) {
     skillList.push(
       <li key={contents[i].id}>
-        <NavLink to={'/Skill/' + contents[i].id}>{contents[i].title}</NavLink>
+        <Link to={'/Skill/' + contents[i].id}>{contents[i].title}</Link>
       </li>,
     );
   }
 
   return (
     <>
-      <h2>Skill Page</h2>
-      <hr />
-      <ul>{skillList}</ul>
+      <ul>
+        <li>
+          <Link to={'/Skill/1'}>버튼1</Link>
+        </li>
+        <li>
+          <Link to={'/Skill/2'}>버튼2</Link>
+        </li>
+        <li>
+          <Link to={'/Skill/3'}>버튼3</Link>
+        </li>
+      </ul>
       <SubRouter contents={contents} />
     </>
   );
