@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer } from 'react';
 import axios from 'axios';
 
-// type: LOADING, SUCCESS, ERROR
+// action: LOADING, SUCCESS, ERROR
+// 리듀서함수가 생기면서 코드가 길어졌지만 따로 파일분리가 가능하다
 function reducer(state, action) {
   switch (action.type) {
     case 'LOADING':
