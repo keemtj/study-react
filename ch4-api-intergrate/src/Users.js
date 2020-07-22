@@ -11,8 +11,9 @@ async function getUsers() {
 }
 
 function Users() {
-  // custom hook, useAsync(callback, deps =[])
-  const [state, refetch] = useAsync(getUsers, []);
+  // custom hook, useAsync(callback, deps = [], skip = false)
+  const [state, refetch] = useAsync(getUsers, [], true);
+
   /*
     Web(chrome) inspector -> network tab
     -> Trotting: Online(default)을 Fast 3G, Slow 3G로 설정
@@ -27,7 +28,9 @@ function Users() {
         <button onClick={refetch}>다시 불러오기</button>
       </>
     );
-  if (!users) return null; // return null; =>  아무것도 안보여지게 됨
+  // data:users가 없으면 return null; ->  아무것도 안보여지게 됨
+  // if (!users) return null;
+  if (!users) return <button onClick={refetch}>데이터 불러오기</button>; // null -> button 클릭으로 데이터를 불러오도록 설정
 
   return (
     <>

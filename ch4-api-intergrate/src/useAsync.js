@@ -32,8 +32,11 @@ function reducer(state, action) {
   1. callback: Api를 호출하는 함수를 넣어줌
   2. deps: 나중에 useEffect를 사용해서 컴포넌트가 로딩됐을 때 혹은 어떤 값이 변경됐을 때
            api를 재요청할건데 그 useEffect의 두번째 파라미터에 넣는 그 deps를 그대로 사용
+  +3. skip: 처음 렌더링 될 때 요청하는 것이 아닌 글을 쓰거나, 수정, 삭제 등 사용자의 인터렉션이 있을 때 
+            데이터를 불러오도록 설정
+            (기본값 false로 설정하고 useEffect에서 true일 때의 코드 작성)
 */
-function useAsync(callback, deps = []) {
+function useAsync(callback, deps = [], skip = false) {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
     data: null,
@@ -55,6 +58,10 @@ function useAsync(callback, deps = []) {
   // deps가 빈 배열일 경우 컴포넌트가 처음 렌더링 될때만 fetchData를 호출
   // 만약에 deps에 특정 상태를 받아오게 되면 그 특정 상태가 바뀔 때마다 리렌더링이 발생
   useEffect(() => {
+    // skip === true이면 return; -> fetchData를 호출하지 않아 api데이터를 가져오지 않음
+    if (skip) {
+      return;
+    }
     fetchData();
     // 문맥상 deps가 잘못되었기 때문에 eslint에서 경고 문구를 띄워줌
     // 그러나 이 코드의 경우 파라미터로 받아올 것을 예상하고 만든 것이기 때문에 문제가 없음
