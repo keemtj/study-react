@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axiox';
+import axios from 'axios';
 
 function Users() {
   /*
@@ -25,7 +25,7 @@ function Users() {
         // 데이터를 가져오는 동안 loading = true
         setLoading(true);
         const response = await axios.get(
-          'https://jsonplaceholder/typicode.com/users',
+          'https://jsonplaceholder.typicode.com/users',
         );
 
         // 가져온 데이터를 setUsers를 통해 업데이트
@@ -40,6 +40,11 @@ function Users() {
     fetchUsers();
   }, []);
 
+  /*
+    Web(chrome) inspector -> network tab
+    -> Trotting: Online(default)을 Fast 3G, Slow 3G로 설정
+    -> loading, error일 때의 return값 확인 가능
+  */
   if (loading) return <div>로딩중 ... </div>;
   if (error) return <div>에러가 발생했습니다</div>;
   if (!users) return null; // return null; =>  아무것도 안보여지게 됨
