@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import useAsync from './useAsync';
+import User from './User';
 
 // f getUsers: 데이터를 불러오는 함수 = api를 불러오는 함수
 async function getUsers() {
@@ -13,7 +14,7 @@ async function getUsers() {
 function Users() {
   // custom hook, useAsync(callback, deps = [], skip = false)
   const [state, refetch] = useAsync(getUsers, [], true);
-
+  const [userId, setUserId] = useState(null);
   /*
     Web(chrome) inspector -> network tab
     -> Trotting: Online(default)을 Fast 3G, Slow 3G로 설정
@@ -36,13 +37,15 @@ function Users() {
     <>
       <ul>
         {users.map((user) => (
-          <li key={user.id}>
+          <li key={user.id} onClick={() => setUserId(user.id)}>
             {user.username} ({user.name})
           </li>
         ))}
       </ul>
       {/* 데이터 다시 불러오기 버튼 */}
       <button onClick={refetch}>다시 불러오기</button>
+      {/* <li>에서 onClick 이벤트가 발생하면 User 컴포넌트를 보여줌 */}
+      {userId && <User id={userId} />}
     </>
   );
 }
