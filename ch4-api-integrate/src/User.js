@@ -1,25 +1,18 @@
-import React from 'react';
-import axios from 'axios';
-// import useAsync from './useAsync';
-import { useAsync } from 'react-async';
+import React, { useEffect } from 'react';
+import { useUsersState, useUsersDispatch, getUser } from './UsersContext';
 
-async function getUser({ id }) {
-  const response = await axios.get(
-    `https://jsonplaceholder.typicode.com/users/${id}`,
-  );
-  return response.data;
-}
-// promiseFn: api 호출 함수
-// id
-// watch: id값이 바뀌면 다시 호출하겠다는 뜻(deps랑 유사)
 function User({ id }) {
-  const { data: user, error, isLoading } = useAsync({
-    promiseFn: getUser,
-    id,
-    watch: id,
-  });
+  const state = useUsersState();
+  const dispatch = useUsersDispatch();
 
-  if (isLoading) return <div>로딩중 ... </div>;
+  // 컴포넌트가 맨 처음 렌더링될 때, id가 바뀔 때 데이터를 요청해야 하기 때문에 useEffect
+  useEffect(() => {
+    getUser(dispatch, id);
+  }, [dispatch, id]);
+
+  const { loading, data: user, error } = state.user;
+
+  if (loading) return <div>로딩중 ... </div>;
   if (error) return <div>에러가 발생했습니다.</div>;
   if (!user) return null;
 
