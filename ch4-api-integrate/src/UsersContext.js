@@ -5,18 +5,13 @@ import createAsyncDispatcher, {
   createAsyncHandler,
 } from './asyncActionUtils';
 
+// 1. initialState => refactoring
 const initialState = {
   users: initialAsyncState,
   user: initialAsyncState,
 };
 
-// reducer
-// GET_USERS
-// GET_USERS_SUCCESS
-// GET_USERS_ERROR
-// GET_USER
-// GET_USER_SUCCESS
-// GET_USER_ERROR
+// 2. reducer => refactoring
 const usersHandler = createAsyncHandler('GET_USERS', 'users');
 const userHandler = createAsyncHandler('GET_USER', 'user');
 
@@ -35,6 +30,7 @@ function usersReducer(state, action) {
   }
 }
 
+// 3. context
 // state, dispatch context를 따로 만듦
 const UsersStateContext = createContext(null);
 const UsersDispatchContext = createContext(null);
@@ -51,6 +47,7 @@ export function UsersProvider({ children }) {
   );
 }
 
+// 4. custom hook
 // useContext hook으로 꺼내서 쓸수 있으나
 // useUsersState, useUsersDispatch custom hook으로 나누어서 만듦
 export function useUsersState() {
@@ -71,8 +68,6 @@ export function useUsersDispatch() {
   return dispatch;
 }
 
-// api만 요청하는 것이 아니라 api를 요청하기 전에 특정 action을 dispatch하고
-// api가 성공하거나 실패했을 때도 특정 action을 dispatch한다
-// 추후 이 함수를 호출하게 될때 파라미터로 받아와서 사용
+// 5. api call => refactoring
 export const getUsers = createAsyncDispatcher('GET_USERS', api.getUsers);
 export const getUser = createAsyncDispatcher('GET_USER', api.getUser);
