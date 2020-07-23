@@ -76,3 +76,35 @@ function usersReducer(state, action) {
       throw new Error('Unhandled action type', action.type);
   }
 }
+
+const UsersStateContext = createContext(null);
+const UsersDispatchContext = createContext(null);
+
+export function UserProvider({ children }) {
+  const [state, dispatch] = useReducer(usersReducer, initialState);
+
+  return (
+    <UsersStateContext.Provider value={state}>
+      <UsersDispatchContext.Provider value={dispatch}>
+        {children}
+      </UsersDispatchContext.Provider>
+    </UsersStateContext.Provider>
+  );
+}
+
+// useContext hook 대신에 useUsersState, useUsersDispatch custom hook으로 나누어서 만듦
+export function useUsersState() {
+  const state = useContext(UsersStateContext);
+  if (!state) {
+    throw new Error('Cannot find UserProvider');
+  }
+  return state;
+}
+
+export function useUsersDispatch() {
+  const dispatch = useContext(UsersDispatchContext);
+  if (!dispatch) {
+    throw new Error('Cannot find UserProvider');
+  }
+  return dispatch;
+}
