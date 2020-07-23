@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
+import axios from 'axios';
 
 const initialState = {
   // loading: loading state
@@ -114,4 +115,43 @@ export function useUsersDispatch() {
     throw new Error('Cannot find UserProvider');
   }
   return dispatch;
+}
+
+// api만 요청하는 것이 아니라 api를 요청하기 전에 특정 action을 dispatch하고
+// api가 성공하거나 실패했을 때도 특정 action을 dispatch한다
+// 추후 이 함수를 호출하게 될때 파라미터로 받아와서 사용
+export async function getUsers(dispatch) {
+  dispatch({ type: 'GET_USERS' });
+  try {
+    const response = await axios.get(
+      'https://jsonplaceholder.typicode.com/users',
+    );
+    dispatch({
+      type: 'GET_USERS_SUCCESS',
+      data: response.data,
+    });
+  } catch (e) {
+    dispatch({
+      type: 'GET_USERS_ERROR',
+      error: e,
+    });
+  }
+}
+
+export async function getUser(dispatch, id) {
+  dispatch({ type: 'GET_USER' });
+  try {
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/users/${id}`,
+    );
+    dispatch({
+      type: 'GET_USER_SUCCESS',
+      data: response.data,
+    });
+  } catch (e) {
+    dispatch({
+      type: 'GET_USER_ERROR',
+      error: e,
+    });
+  }
 }
