@@ -1,6 +1,9 @@
 import React, { createContext, useReducer, useContext } from 'react';
 
 const initialState = {
+  // loading: loading state
+  // data: 결과값
+  // error: error
   // users api 요청한 결과를 담을 예정
   users: {
     loading: false,
@@ -77,10 +80,11 @@ function usersReducer(state, action) {
   }
 }
 
+// state, dispatch context를 따로 만듦
 const UsersStateContext = createContext(null);
 const UsersDispatchContext = createContext(null);
 
-export function UserProvider({ children }) {
+export function UsersProvider({ children }) {
   const [state, dispatch] = useReducer(usersReducer, initialState);
 
   return (
@@ -92,9 +96,11 @@ export function UserProvider({ children }) {
   );
 }
 
-// useContext hook 대신에 useUsersState, useUsersDispatch custom hook으로 나누어서 만듦
+// useContext hook으로 꺼내서 쓸수 있으나
+// useUsersState, useUsersDispatch custom hook으로 나누어서 만듦
 export function useUsersState() {
   const state = useContext(UsersStateContext);
+  // error 처리
   if (!state) {
     throw new Error('Cannot find UserProvider');
   }
@@ -103,6 +109,7 @@ export function useUsersState() {
 
 export function useUsersDispatch() {
   const dispatch = useContext(UsersDispatchContext);
+  // error 처리
   if (!dispatch) {
     throw new Error('Cannot find UserProvider');
   }
