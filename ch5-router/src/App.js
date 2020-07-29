@@ -22,6 +22,7 @@ function App() {
       <Route path="/" component={Home} exact />
       <Route path="/about" component={About} />
       <Route path="/profile/:username" component={Profile} />
+      {/* <Route path="/profile/:username/:id" component={Profile} /> */}
     </div>
   );
 }

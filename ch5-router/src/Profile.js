@@ -13,6 +13,7 @@ const profileData = {
 
 function Profile({ match }) {
   const { username } = match.params;
+  // const { username, id } = match.params;
   console.log(match.params);
   const profile = profileData[username];
 
