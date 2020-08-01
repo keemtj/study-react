@@ -1,6 +1,6 @@
 import React from 'react';
 import Profile from './Profile';
-import { Link, Route } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 
 function Profiles() {
   // 변수를 바로 Route 렌더에서 사용 가능
@@ -10,10 +10,25 @@ function Profiles() {
       <h3>사용자 목록</h3>
       <ul>
         <li>
-          <Link to="/profiles/keemtj">keemtj</Link>
+          <NavLink
+            // to='/' 일 경우 마찬가지로 exact가 필요
+            to="/profiles/keemtj"
+            activeStyle={{ background: 'black', color: 'white' }}
+            activeClassName="active"
+            // isActive={(match, location) => {
+            //   return match.params.blah = 'blah
+            // }}
+          >
+            keemtj
+          </NavLink>
         </li>
         <li>
-          <Link to="/profiles/homer">homer</Link>
+          <NavLink
+            to="/profiles/homer"
+            activeStyle={{ background: 'black', color: 'white' }}
+          >
+            homer
+          </NavLink>
         </li>
       </ul>
 
