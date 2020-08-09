@@ -12,6 +12,16 @@ $pink: #f06595;
   &:active {
     background: darken($color: $color, $amount: 10%);
   }
+
+  &.outline {
+    color: $color;
+    background: none;
+    border: 1px solid $color;
+    &:hover {
+      background: $color;
+      color: white;
+    }
+  }
 }
 
 .Button {
@@ -50,23 +60,32 @@ $pink: #f06595;
     font-size: 0.75rem;
   }
 
-  // 반복되는 코드는 mixin으로 관리
+  // 반복되는 코드는 mixin으로 색상 관리
   &.blue {
     @include button-color($blue);
-  }
-
-  &.pink {
-    @include button-color($pink);
   }
 
   &.gray {
     @include button-color($gray);
   }
 
+  &.pink {
+    @include button-color($pink);
+  }
+
   // CSS 인접형제선택자 +
   // A + B에서 A를 제외한 뒤의 모든 형제들을 선택
   & + & {
     margin-left: 1rem;
+  }
+
+  &.fullWidth {
+    width: 100%;
+    justify-content: center;
+    & + & {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
   }
 }
 
