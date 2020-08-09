@@ -14,16 +14,45 @@ $blue: #228be6; // 주석!
   border-radius: 4px;
   cursor: pointer;
 
-  height: 2.25rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  font-size: 1rem;
+
+  // & = 자기 자신을 가리킨다
+  // .Button.large
+  &.large {
+    height: 3rem;
+    font-size: 1.25rem;
+  }
+
+  // .Button.medium
+  &.medium {
+    height: 2.25rem;
+    font-size: 1rem;
+  }
+
+  // .Button.small
+  &.small {
+    height: 1.75rem;
+    font-size: 0.75rem;
+  }
+
   background: $blue;
 
+  // .Button:hover
   &:hover {
     background: lighten($color: $blue, $amount: 10%);
   }
+  // .Button:active
   &:active {
     background: darken($color: $blue, $amount: 10%);
   }
+  // CSS 인접형제선택자 +
+  // A + B에서 A를 제외한 뒤의 모든 형제들을 선택
+  & + & {
+    margin-left: 1rem;
+  }
 }
+
+// .Button + .Button {
+//   margin-left: 1rem;
+// }
