@@ -6,11 +6,28 @@ import './Button.scss';
 // color: blue, pink, gray
 // outline, fullWidth: 객체 안에 props로 넣어주면 props = true일 때만 CSS클래스가 적용
 // function Button({ children, size = 'medium' }) {
-function Button({ children, size, color, outline, fullWidth }) {
+function Button({
+  children,
+  size,
+  color,
+  outline,
+  fullWidth,
+  className,
+  ...rest
+}) {
+  console.log(rest);
   return (
     <>
       <button
-        className={classNames('Button', size, color, { outline, fullWidth })}
+        className={classNames(
+          'Button',
+          size,
+          color,
+          { outline, fullWidth },
+          className,
+        )}
+        // rest객체 안에 있는 모든 것들을 버튼에게 설정해준다 라는 뜻
+        {...rest}
       >
         {children}
       </button>
