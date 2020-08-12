@@ -1,5 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { darken, lighten } from 'polished';
+
+const colorStyles = css`
+  ${({ theme, color }) => {
+    const selected = theme.palette[color];
+    return css`
+      background: ${selected};
+      &:hover {
+        background: ${lighten(0.1, selected)};
+      }
+      &:active {
+        background: ${darken(0.1, selected)};
+      }
+    `;
+  }}
+`;
 
 const StyledButton = styled.button`
   /* common style */
@@ -19,22 +35,23 @@ const StyledButton = styled.button`
   font-size: 1rem;
 
   /* color */
-  background: #228be6;
-  &:hover {
-    background: #330af0;
-  }
-  &:active {
-    background: #1c7ed6;
-  }
-
+  ${colorStyles}
   /* 버튼끼리 같이 있을 때 주기 위한 여백 */
   & + & {
     margin-left: 1rem;
   }
 `;
 
-function Button({ children, ...rest }) {
-  return <StyledButton {...rest}>{children}</StyledButton>;
+function Button({ children, color, ...rest }) {
+  return (
+    <StyledButton color={color} {...rest}>
+      {children}
+    </StyledButton>
+  );
 }
+
+Button.defaultProps = {
+  color: 'blue',
+};
 
 export default Button;
