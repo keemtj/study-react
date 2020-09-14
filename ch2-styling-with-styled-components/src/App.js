@@ -42,12 +42,12 @@ function App() {
   const [dialog, setDialog] = useState(false);
   const onClick = () => {
     // ! 2. 다이어로그 보여주기버튼 클릭
-    // ! dialog(visible) false -> true
+    // ! 2-1. dialog(visible) false -> true
     setDialog(true);
   };
   //
   // ! 5. 다이어로그 끄기버튼 클릭
-  // ! dialog(visible) true -> false
+  // ! 5-1. dialog(visible) true -> false
   const onConfirm = () => {
     console.log('취소');
     setDialog(false);
