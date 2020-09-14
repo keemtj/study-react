@@ -1,0 +1,67 @@
+import { createStore } from 'redux';
+
+const initialState = {
+  counter: 0,
+  text: '',
+  list: [],
+};
+
+const INCREASE = 'INCREASE';
+const DECREASE = 'DECREASE';
+const CHANGE_TEXT = 'CHANGE_TEXT';
+const ADD_TO_LIST = 'ADD_TO_LIST';
+
+const increase = () => ({ type: INCREASE });
+const decrease = () => ({ type: DECREASE });
+const changeText = (text) => ({ type: CHANGE_TEXT, text });
+const addToList = (item) => ({ type: ADD_TO_LIST, item });
+
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case INCREASE:
+      return {
+        ...state,
+        counter: state.counter + 1,
+      };
+    case DECREASE:
+      return {
+        ...state,
+        counter: state.counter - 1,
+      };
+    case CHANGE_TEXT:
+      return {
+        ...state,
+        text: action.text,
+      };
+    case ADD_TO_LIST:
+      return {
+        ...state,
+        list: state.list.concat(action.item),
+      };
+    default:
+      return state;
+  }
+}
+
+const store = createStore(reducer);
+console.log(store.getState());
+
+const listener = () => {
+  const state = store.getState();
+  console.log(state);
+};
+
+const unsubscribe = store.subscribe(listener);
+// unsubscribe함수는 나중에 구독을 해체하고 싶을 떄 호출하면 된다.
+// unsubscribe();
+
+store.dispatch(increase());
+store.dispatch(decrease());
+store.dispatch(changeText('안녕하세요'));
+store.dispatch(addToList({ id: 1, text: '와우' }));
+
+window.store = store; // store instance를 browser console에서 사용할 수 있다!!
+window.unsubscribe = unsubscribe;
+
+// ! subscribe와 getState함수는 react에서 잘 사용하지 않는다.
+// ! getState의 경우 미들웨어를 사용할 때까지는 잘 없다.
