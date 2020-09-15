@@ -7,6 +7,7 @@ export const increase = () => ({ type: INCREASE });
 export const decrease = () => ({ type: DECREASE });
 
 // ! 1.아래의 코드는 정확하게 얘기하면 전체가 thunk함수는 아니다
+// ! getState가 필요할 경우에는 불러오지만 필요없으면 생략해도 된다
 // ! 정확히는 2,3번으로 나누어 2번이 thunk함수이다
 export const increaseAsync = () => (dispatch, getState) => {
   setTimeout(() => {
