@@ -8,7 +8,7 @@ const CounterContainer = () => {
   const dispatch = useDispatch();
 
   const onIncrease = () => {
-    dispatch(increase());
+    dispatch(increase()); // === middleware의 result값이다
   };
 
   const onDecrease = () => {
