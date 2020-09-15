@@ -5,7 +5,8 @@ export const createPromiseThunk = (type, promiseCreator) => {
 
   // return value; = thunk creator;
   // async부분부터 thunk;
-  return (param) => async (dispatch) => {
+  return (param) => async (dispatch, getState) => {
+    console.log(getState().counter);
     dispatch({ type });
     try {
       const payload = await promiseCreator(param);
