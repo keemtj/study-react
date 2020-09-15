@@ -1,18 +1,23 @@
 import React from 'react';
 import Counter from '../components/Counter';
 import { useSelector, useDispatch } from 'react-redux';
-import { increase, decrease } from '../modules/counter';
+import {
+  increase,
+  decrease,
+  increaseAsync,
+  decreaseAsync,
+} from '../modules/counter';
 
 const CounterContainer = () => {
   const number = useSelector((state) => state.counter);
   const dispatch = useDispatch();
 
   const onIncrease = () => {
-    dispatch(increase()); // === middleware의 result값이다
+    dispatch(increaseAsync()); // === middleware의 result값이다
   };
 
   const onDecrease = () => {
-    dispatch(decrease());
+    dispatch(decreaseAsync());
   };
 
   return (
