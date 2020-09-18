@@ -93,6 +93,7 @@ const initialState = {
 const getPostsReducer = handleAsyncActions(GET_POSTS, 'posts', true);
 // const getPostReducer = handleAsyncActions(GET_POST, 'post');
 const getPostReducer = (state, action) => {
+  // meta로 넣어둔 아이디를 통해 loading일 때 id가 있는지 확인 가능
   const id = action.meta;
   switch (action.type) {
     case GET_POST:
