@@ -31,6 +31,8 @@ export const reducerUtils = {
     data,
     error: null,
   }),
+  // ! parameter가 아무것도 안주어졌을 때 기본값을 null로 설정하여
+  // ! loading함수가 호출되어 상태객체를 만들 때 기존 데이터가 초기화 되고 있다
   loading: (prevState = null) => ({
     loading: true,
     data: prevState,
@@ -48,16 +50,22 @@ export const reducerUtils = {
   }),
 };
 
-export const handleAsyncActions = (type, key) => {
+// ! keepData = 기존 데이터를 유지하는 지 여부
+export const handleAsyncActions = (type, key, keepData) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
   // return reducer
   return (state, action) => {
     // update
     switch (action.type) {
       case type:
+        console.log(
+          '처음 컴포넌트가 렌더링 될때 기존 데이터가 있었는지 확인:',
+          state[key].data,
+        );
         return {
           ...state,
-          [key]: reducerUtils.loading(),
+          // ! 기존 데이터를 갖고 있으면 그 데이터를 파라미터로 넘겨주고 아닐 경우에는 null
+          [key]: reducerUtils.loading(keepData ? state[key].data : null),
         };
       case SUCCESS:
         return {
