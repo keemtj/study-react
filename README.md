@@ -1,2 +1,2 @@
-# React
-React lecture
+# React & Redux
+React & Redux & Redux-middleware(thunk, saga)
