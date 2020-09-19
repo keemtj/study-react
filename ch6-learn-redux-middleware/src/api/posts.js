@@ -24,6 +24,8 @@ export const getPosts = async () => {
   return posts;
 };
 
+// const idSelector = (param) => param.id;
+// export const getPostById = async ({ id, option }) => {
 export const getPostById = async (id) => {
   await sleep(500);
   return posts.find((post) => post.id === id);

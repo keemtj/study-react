@@ -23,7 +23,33 @@ export const createPromiseThunk = (type, promiseCreator) => {
     }
   };
 };
-
+const defaultIdSelector = (param) => param;
+export const createPromiseThunkById = (
+  type,
+  promiseCreator,
+  idSelector = defaultIdSelector,
+) => {
+  const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
+  return (param) => async (dispatch, getState) => {
+    const id = idSelector(param);
+    dispatch({ type, meta: id });
+    try {
+      const payload = await promiseCreator(param);
+      dispatch({
+        type: SUCCESS,
+        payload,
+        meta: id,
+      });
+    } catch (e) {
+      dispatch({
+        type: ERROR,
+        payload: e,
+        error: true,
+        meta: id,
+      });
+    }
+  };
+};
 // initialState
 export const reducerUtils = {
   initial: (data = null) => ({
@@ -76,6 +102,50 @@ export const handleAsyncActions = (type, key, keepData) => {
         return {
           ...state,
           [key]: reducerUtils.error(action.payload),
+        };
+      default:
+        return state;
+    }
+  };
+};
+
+export const handleAsyncActionsById = (type, key, keepData) => {
+  const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
+  // return reducer
+  return (state, action) => {
+    const id = action.meta;
+    // update
+    switch (action.type) {
+      case type:
+        console.log(
+          '처음 컴포넌트가 렌더링 될때 기존 데이터가 있었는지 확인:',
+          state[key].data,
+        );
+        return {
+          ...state,
+          // ! 기존 데이터를 갖고 있으면 그 데이터를 파라미터로 넘겨주고 아닐 경우에는 null
+          [key]: {
+            ...state[key],
+            [id]: reducerUtils.loading(
+              keepData ? state[key][id] && state[key][id].data : null,
+            ),
+          },
+        };
+      case SUCCESS:
+        return {
+          ...state,
+          [key]: {
+            ...state[key],
+            [id]: reducerUtils.success(action.payload),
+          },
+        };
+      case ERROR:
+        return {
+          ...state,
+          [key]: {
+            ...state[key],
+            [id]: reducerUtils.error(action.payload),
+          },
         };
       default:
         return state;
