@@ -24,7 +24,7 @@ import axios from 'axios';
 export const getPosts = async () => {
   // await sleep(500);
   // return posts;
-  const response = await axios.get('http://localhost:4000/posts');
+  const response = await axios.get('/posts');
   return response.data;
 };
 
@@ -33,6 +33,6 @@ export const getPosts = async () => {
 export const getPostById = async (id) => {
   // await sleep(500);
   // return posts.find((post) => post.id === id);
-  const response = await axios.get(`http://localhost:4000/posts/${id}`);
+  const response = await axios.get(`/posts/${id}`);
   return response.data;
 };
