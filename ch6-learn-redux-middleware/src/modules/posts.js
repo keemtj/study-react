@@ -39,6 +39,12 @@ export const getPost = createPromiseThunkById(GET_POST, api.getPostById);
 //     });
 //   }
 // };
+export const goToHome = () => (dispatch, getState, { history }) => {
+  // 단순히 홈으로 이동하게 했지만
+  // getState를 사용해서 현재 상태를 조회하고 그에 따른 조건부로 이동하거나
+  // 비동기작업(api)를 호출하고나서 결과물에 따라 조건부로 페이지 전환을 한다거나 해서 구현 할 수 있다
+  history.push('/');
+};
 
 export const clearPost = () => ({ type: CLEAR_POST });
 
