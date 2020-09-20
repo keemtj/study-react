@@ -5,6 +5,8 @@ import {
   handleAsyncActions,
   createPromiseThunkById,
   handleAsyncActionsById,
+  craetePromiseSaga,
+  createPromiseSagaById,
 } from '../lib/asyncUtils';
 import { call, put, takeEvery } from 'redux-saga/effects';
 
@@ -21,40 +23,43 @@ const CLEAR_POST = 'CLAER_POST';
 export const getPosts = () => ({ type: GET_POSTS });
 export const getPost = (id) => ({ type: GET_POST, payload: id, meta: id });
 
-function* getPostsSaga() {
-  try {
-    const posts = yield call(api.getPosts);
-    yield put({
-      type: GET_POSTS_SUCCESS,
-      payload: posts,
-    });
-  } catch (e) {
-    yield put({
-      type: GET_POSTS_ERROR,
-      payload: e,
-      error: true,
-    });
-  }
-}
+const getPostsSaga = craetePromiseSaga(GET_POSTS, api.getPosts);
+const getPostSaga = createPromiseSagaById(GET_POST, api.getPostById);
 
-function* getPostSaga(action) {
-  const id = action.payload;
-  try {
-    const post = yield call(api.getPostById, id);
-    yield put({
-      type: GET_POST_SUCCESS,
-      payload: post,
-      meta: id,
-    });
-  } catch (e) {
-    yield put({
-      type: GET_POST_ERROR,
-      payload: e,
-      error: true,
-      meta: id,
-    });
-  }
-}
+// function* getPostsSaga() {
+//   try {
+//     const posts = yield call(api.getPosts);
+//     yield put({
+//       type: GET_POSTS_SUCCESS,
+//       payload: posts,
+//     });
+//   } catch (e) {
+//     yield put({
+//       type: GET_POSTS_ERROR,
+//       payload: e,
+//       error: true,
+//     });
+//   }
+// }
+
+// function* getPostSaga(action) {
+//   const id = action.payload;
+//   try {
+//     const post = yield call(api.getPostById, id);
+//     yield put({
+//       type: GET_POST_SUCCESS,
+//       payload: post,
+//       meta: id,
+//     });
+//   } catch (e) {
+//     yield put({
+//       type: GET_POST_ERROR,
+//       payload: e,
+//       error: true,
+//       meta: id,
+//     });
+//   }
+// }
 
 export function* postsSaga() {
   yield takeEvery(GET_POSTS, getPostsSaga);
