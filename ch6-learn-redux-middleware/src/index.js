@@ -12,7 +12,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
 // import { BrowserRouter } from 'react-router-dom';
 import { Router } from 'react-router-dom';
-// history모듈: router 설치할때 자동으로 같이 받아짐
+// history모듈: router dependency 설치할때 자동으로 같이 받아짐
 import { createBrowserHistory } from 'history';
 // saga 불러오기
 import createSagaMiddleware from 'redux-saga';
