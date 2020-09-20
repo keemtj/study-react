@@ -8,7 +8,7 @@ import {
   craetePromiseSaga,
   createPromiseSagaById,
 } from '../lib/asyncUtils';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, getContext } from 'redux-saga/effects';
 
 const GET_POSTS = 'GET_POSTS';
 const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
@@ -18,10 +18,13 @@ const GET_POST = 'GET_POST';
 const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
 const GET_POST_ERROR = 'GET_POST_ERROR';
 
+const GO_TO_HOME = 'GO_TO_HOME';
 const CLEAR_POST = 'CLAER_POST';
 // ! Saga
 export const getPosts = () => ({ type: GET_POSTS });
 export const getPost = (id) => ({ type: GET_POST, payload: id, meta: id });
+
+// export const goToHome = () => ({ type: GO_TO_HOME });
 
 const getPostsSaga = craetePromiseSaga(GET_POSTS, api.getPosts);
 const getPostSaga = createPromiseSagaById(GET_POST, api.getPostById);
@@ -61,9 +64,17 @@ const getPostSaga = createPromiseSagaById(GET_POST, api.getPostById);
 //   }
 // }
 
+function* goToHomeSaga() {
+  console.log('======================', getContext('history'));
+  const history = yield getContext('history');
+  console.log(history);
+  history.push('/');
+}
+
 export function* postsSaga() {
   yield takeEvery(GET_POSTS, getPostsSaga);
   yield takeEvery(GET_POST, getPostSaga);
+  yield takeEvery(GO_TO_HOME, goToHomeSaga);
 }
 
 // ! Thunk
@@ -89,11 +100,12 @@ export function* postsSaga() {
 //     });
 //   }
 // };
-export const goToHome = () => (dispatch, getState, { history }) => {
+export const goToHome = () => (dispatch, getState, action) => {
   // 단순히 홈으로 이동하게 했지만
   // getState를 사용해서 현재 상태를 조회하고 그에 따른 조건부로 이동하거나
   // 비동기작업(api)를 호출하고나서 결과물에 따라 조건부로 페이지 전환을 한다거나 해서 구현 할 수 있다
-  history.push('/');
+  console.log(action);
+  action.history.push('/');
 };
 
 export const clearPost = () => ({ type: CLEAR_POST });

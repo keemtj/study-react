@@ -17,9 +17,14 @@ import { createBrowserHistory } from 'history';
 // saga 불러오기
 import createSagaMiddleware from 'redux-saga';
 
-// createSagaMiddleware 호출한 값 할당
-const sagaMiddleware = createSagaMiddleware();
 const customHistory = createBrowserHistory();
+
+// createSagaMiddleware 호출한 값 할당
+const sagaMiddleware = createSagaMiddleware({
+  context: {
+    history: customHistory,
+  },
+});
 
 // store에 saga 적용
 const store = createStore(
